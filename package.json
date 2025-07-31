@@ -67,10 +67,13 @@
   "readme": "readme.md",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "nodemon": "^3.1.10",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.1"
   },
   "scripts": {
+    "start": "node meshcentral.js",
+    "dev": "nodemon meshcentral.js",
     "build:css": "npx tailwindcss -i ./public/styles/tailwind.css -o ./public/styles/tailwind-built.css --minify"
   }
 }
