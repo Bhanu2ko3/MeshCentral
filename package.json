@@ -40,6 +40,7 @@
     "@seald-io/nedb": "4.0.4",
     "archiver": "7.0.1",
     "body-parser": "1.20.3",
+    "bootstrap": "^5.3.7",
     "cbor": "5.2.0",
     "compression": "1.8.1",
     "cookie-session": "2.1.1",
