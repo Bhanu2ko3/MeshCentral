@@ -20,6 +20,9 @@
     <link href="styles/select2-bootstrap-5-theme.min.css" rel="stylesheet" title="CSS">
     <link type="text/css" href="styles/custom.css" media="screen" rel="stylesheet" title="CSS" />
     <link rel="apple-touch-icon" href="/favicon-303x303.png" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <script type="text/javascript" src="scripts/common-0.0.1{{{min}}}.js"></script>
     <script type="text/javascript" src="scripts/meshcentral{{{min}}}.js"></script>
     <script type="text/javascript" src="scripts/amt-0.2.0{{{min}}}.js"></script>
@@ -158,6 +161,7 @@
             </div>
         </div>
 
+        {{!-- side bar --}}
         <div class="sidebar" id="page_leftbar">
             <nav class="nav flex-column text-center">
                 <a class="nav-link active" id="LeftMenuMyDevices" href="#" data-target="general" onmouseup="go(1,event)"
@@ -372,6 +376,7 @@
                             </tr>
                         </table>
                     </div>
+
                     <div id=UsersSubMenuSpan style="display:none">
                         <table id=UsersSubMenu cellpadding=0 cellspacing=0 class=style1>
                             <tr>
@@ -666,7 +671,8 @@
                     </div>
 
                     <!-- No Meshes Panel -->
-                    <div id="NoMeshesPanel" class="card shadow-sm text-center p-4" style="display:none">
+                    <div id="NoMeshesPanel" class="card shadow-sm text-center p-4"
+                        style="display:none;overflow: auto; ">
                         <div class="card-body">
                             <i class="fas fa-info-circle fa-3x text-primary mb-3"></i>
                             <h5 class="card-title">No Device Groups Found</h5>
@@ -681,13 +687,13 @@
                     </div>
 
                     <!-- Devices Container -->
-                    <div id="xdevices" class="card shadow-sm" style="display:none; overflow: auto;"
+                    <div id="xdevices" class="card-body shadow-sm" style="display:none; overflow: auto;"
                         onscroll="onDevicesScroll(false)">
                         <!-- Devices will be loaded here -->
                     </div>
 
                     <!-- Map Container -->
-                    <div id="xdevicesmap" class="card shadow-sm" style="display:none; height: 600px;">
+                    <div id="xdevicesmap" class="card-body shadow-sm" style="display:none; height: 600px;">
                         <!-- Map Search Results Dialog -->
                         <div id="xmapSearchResultsDlg" class="card shadow"
                             style="display:none; position: absolute; z-index: 1000; width: 300px;">
@@ -708,199 +714,293 @@
 
 
             {{!-- my account --}}
-            <div id="p2" style="display:none">
-                <div class="container-fluid p-4">
+            <div id="p2" style="display:none;">
+                <div class="container-fluid p-4  ">
                     <!-- Header -->
                     <div id="p2title" class="mb-4">
                         <h1 class="display-6 fw-bold">My Account</h1>
                         <hr class="my-2">
                     </div>
+                    <div style="max-height: 700px; overflow-y: auto; overflow-x: hidden; ">
+                        <div class="">
+                            <div id="p2info" class="row g-4 ">
+                                <!-- Profile Section -->
+                                <div class="col-md-3">
+                                    <div class="card shadow-sm mb-4">
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-bold d-flex align-items-center gap-2 mb-3">
+                                                <i class="material-icons text-primary">account_circle</i>
+                                                Profile Picture
+                                            </h5>
 
-                    <div id="p2info" class="row g-4">
-                        <!-- Profile Section -->
-                        <div class="col-md-4">
-                            <div class="card shadow-sm h-100">
-                                <div class="card-body text-center">
-                                    <div id="p2AccountImageFrame" class="mb-4">
-                                        <img id="p2AccountImage" alt="Profile" loading="lazy" width="128" height="128"
-                                            onclick="account_manageImage(0)" src="images/user-256.png"
-                                            class="rounded-circle border border-3 border-primary object-fit-cover cursor-pointer">
-                                        <div class="mt-3">
-                                            <button class="btn btn-sm btn-outline-primary"
-                                                onclick="account_manageImage(0)">
-                                                <i class="fas fa-camera me-1"></i>Change Profile Picture
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Security Section -->
-                        <div class="col-md-8">
-                            <div class="card shadow-sm mb-4">
-                                <div class="card-body">
-                                    <h5 class="card-title fw-bold mb-3">
-                                        <i class="fas fa-shield-alt me-2 text-primary"></i>Account Security
-                                    </h5>
-
-                                    <div id="p2AccountSecurity" class="mb-4">
-                                        <div class="list-group list-group-flush">
-                                            <div
-                                                class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-mobile-alt me-3 text-muted"></i>
-                                                    <a href="#" onclick="return account_managePhone()"
-                                                        class="text-decoration-none">Phone Number</a>
+                                            <div class="text-center">
+                                                <div class="position-relative d-inline-block" style="cursor: pointer;"
+                                                    onclick="account_manageImage(0)">
+                                                    <img id="p2AccountImage" alt="Profile" loading="lazy"
+                                                        src="images/user-256.png" class="img-fluid shadow-sm"
+                                                        style="width: 200px; height: 200px; object-fit: cover;">
+                                                    <div class="avatar-overlay">
+                                                        <i class="fas fa-camera mb-1"></i>
+                                                        <small>Change Photo</small>
+                                                    </div>
                                                 </div>
-                                                <span id="authPhoneNumberCheck" class="badge bg-success rounded-pill"><i
-                                                        class="fas fa-check"></i></span>
-                                            </div>
 
-                                            <div
-                                                class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-envelope me-3 text-muted"></i>
-                                                    <a href="#" onclick="return account_manageAuthEmail()"
-                                                        class="text-decoration-none">Email Authentication</a>
-                                                </div>
-                                                <span id="authEmailSetupCheck" class="badge bg-success rounded-pill"><i
-                                                        class="fas fa-check"></i></span>
-                                            </div>
-
-                                            <div
-                                                class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-mobile me-3 text-muted"></i>
-                                                    <a href="#" onclick="return account_manageAuthApp()"
-                                                        class="text-decoration-none">Authenticator App</a>
-                                                </div>
-                                                <span id="authAppSetupCheck" class="badge bg-success rounded-pill"><i
-                                                        class="fas fa-check"></i></span>
-                                            </div>
-
-                                            <div
-                                                class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-key me-3 text-muted"></i>
-                                                    <a href="#" onclick="return account_manageHardwareOtp(0)"
-                                                        class="text-decoration-none">Security Keys</a>
-                                                </div>
-                                                <span id="authKeySetupCheck" class="badge bg-success rounded-pill"><i
-                                                        class="fas fa-check"></i></span>
-                                            </div>
-
-                                            <div
-                                                class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-history me-3 text-muted"></i>
-                                                    <a href="#" onclick="return account_viewPreviousLogins()"
-                                                        class="text-decoration-none">Login History</a>
+                                                <div class="mt-4">
+                                                    <button class="btn btn-primary d-flex align-items-center gap-2"
+                                                        onclick="account_manageImage(0)">
+                                                        <i class="fas fa-pen"></i>
+                                                        Edit Profile
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Account Actions -->
-                            <div class="card shadow-sm mb-4">
-                                <div class="card-body">
-                                    <h5 class="card-title fw-bold mb-3">
-                                        <i class="fas fa-cog me-2 text-primary"></i>Account Settings
-                                    </h5>
 
-                                    <div id="p2AccountActions">
-                                        <div class="list-group list-group-flush">
-                                            <div class="list-group-item">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-globe me-3 text-muted"></i>
-                                                    <a href="#" onclick="return account_showLocalizationSettings()"
-                                                        class="text-decoration-none">Localization Settings</a>
+                                <div class="col-md-4">
+                                    <!-- Account Actions -->
+                                    <div class="card shadow-sm mb-4">
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-bold mb-3">
+                                                <i class="fas fa-cog me-2 text-primary"></i>Account Settings
+                                            </h5>
+
+                                            <div id="p2AccountActions" class="account-actions">
+                                                <div class="settings-menu">
+                                                    <!-- Localization Settings -->
+                                                    <div class="setting-item"
+                                                        onclick="account_showLocalizationSettings()">
+                                                        <div class="setting-icon">
+                                                            <i class="fas fa-globe"></i>
+                                                        </div>
+                                                        <div class="setting-content">
+                                                            <h6>Localization Settings</h6>
+                                                            <p class="text-muted">Language, timezone and regional
+                                                                preferences
+                                                            </p>
+                                                        </div>
+                                                        <i class="fas fa-chevron-right"></i>
+                                                    </div>
+
+                                                    <!-- Notification Settings -->
+                                                    <div class="setting-item"
+                                                        onclick="account_showAccountNotifySettings()">
+                                                        <div class="setting-icon">
+                                                            <i class="fas fa-bell"></i>
+                                                        </div>
+                                                        <div class="setting-content">
+                                                            <h6>Notification Settings</h6>
+                                                            <p class="text-muted">Manage email and push notifications
+                                                            </p>
+                                                        </div>
+                                                        <i class="fas fa-chevron-right"></i>
+                                                    </div>
+
+                                                    <!-- Change Email (hidden by default) -->
+                                                    <div id="accountChangeEmailAddressSpan" class="setting-item"
+                                                        style="display:none" onclick="account_showChangeEmail()">
+                                                        <div class="setting-icon">
+                                                            <i class="fas fa-at"></i>
+                                                        </div>
+                                                        <div class="setting-content">
+                                                            <h6>Change Email Address</h6>
+                                                            <p class="text-muted">Update your account email</p>
+                                                        </div>
+                                                        <i class="fas fa-chevron-right"></i>
+                                                    </div>
+
+                                                    <!-- Change Password -->
+                                                    <div class="setting-item" onclick="account_showChangePassword()">
+                                                        <div class="setting-icon">
+                                                            <i class="fas fa-key"></i>
+                                                        </div>
+                                                        <div class="setting-content">
+                                                            <h6>Change Password</h6>
+                                                            <div
+                                                                class="d-flex justify-content-between align-items-center">
+                                                                <p class="text-muted mb-0">Update your security
+                                                                    credentials
+                                                                </p>
+                                                                <span id="p2nextPasswordUpdateTime"
+                                                                    class="badge bg-light text-muted"></span>
+                                                            </div>
+                                                        </div>
+                                                        <i class="fas fa-chevron-right"></i>
+                                                    </div>
+
+                                                    <!-- Theme Switcher -->
+                                                    <div class="setting-item" onclick="account_showThemesSwitcher()">
+                                                        <div class="setting-icon">
+                                                            <i class="fas fa-palette"></i>
+                                                        </div>
+                                                        <div class="setting-content">
+                                                            <h6>Switch Theme</h6>
+                                                            <p class="text-muted">Change application appearance</p>
+                                                        </div>
+                                                        <i class="fas fa-chevron-right"></i>
+                                                    </div>
+
+                                                    <!-- Create Login Token (hidden by default) -->
+                                                    <div id="accountCreateLoginTokenSpan" class="setting-item"
+                                                        style="display:none" onclick="account_createLoginToken()">
+                                                        <div class="setting-icon">
+                                                            <i class="fas fa-key"></i>
+                                                        </div>
+                                                        <div class="setting-content">
+                                                            <h6>Create Login Token</h6>
+                                                            <p class="text-muted">Generate API access tokens</p>
+                                                        </div>
+                                                        <i class="fas fa-chevron-right"></i>
+                                                    </div>
+
+                                                    <!-- Delete Account -->
+                                                    <div class="setting-item text-danger"
+                                                        onclick="account_showDeleteAccount()">
+                                                        <div class="setting-icon">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </div>
+                                                        <div class="setting-content">
+                                                            <h6>Delete Account</h6>
+                                                            <p class="text-muted">Permanently remove your account</p>
+                                                        </div>
+                                                        <i class="fas fa-chevron-right"></i>
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            <div class="list-group-item">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-bell me-3 text-muted"></i>
-                                                    <a href="#" onclick="return account_showAccountNotifySettings()"
-                                                        class="text-decoration-none">Notification Settings</a>
-                                                </div>
-                                            </div>
+                                        </div>
+                                    </div>
 
-                                            <div id="accountChangeEmailAddressSpan" class="list-group-item"
-                                                style="display:none">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-at me-3 text-muted"></i>
-                                                    <a href="#" onclick="return account_showChangeEmail()"
-                                                        class="text-decoration-none">Change Email Address</a>
-                                                </div>
-                                            </div>
+                                </div>
 
-                                            <div class="list-group-item">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-key me-3 text-muted"></i>
-                                                    <a href="#" onclick="return account_showChangePassword()"
-                                                        class="text-decoration-none">Change Password</a>
-                                                    <span id="p2nextPasswordUpdateTime"
-                                                        class="ms-auto small text-muted"></span>
-                                                </div>
-                                            </div>
+                                <div class="col-md-5">
+                                    <!-- Security Section -->
+                                    <div class="card shadow-sm mb-4">
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-bold mb-3">
+                                                <i class="fas fa-shield-alt me-2 text-primary"></i>Account Security
+                                            </h5>
 
-                                            <div class="list-group-item">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-palette me-3 text-muted"></i>
-                                                    <a href="#" onclick="return account_showThemesSwitcher()"
-                                                        class="text-decoration-none">Switch Theme</a>
-                                                </div>
-                                            </div>
+                                            <div id="p2AccountSecurity" class="account-actions">
+                                                <div class="settings-menu">
+                                                    <!-- Phone Number -->
+                                                    <div class="setting-item" onclick="account_managePhone()">
+                                                        <div class="setting-icon">
+                                                            <i class="fas fa-mobile-alt"></i>
+                                                        </div>
+                                                        <div class="setting-content">
+                                                            <h6>Phone Number</h6>
+                                                            <p class="text-muted">For account recovery</p>
+                                                        </div>
+                                                        <span id="authPhoneNumberCheck"
+                                                            class="badge bg-success-light text-success">
+                                                            <i class="fas fa-check"></i> Verified
+                                                        </span>
+                                                    </div>
 
-                                            <div id="accountCreateLoginTokenSpan" class="list-group-item"
-                                                style="display:none">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-key me-3 text-muted"></i>
-                                                    <a href="#" onclick="return account_createLoginToken()"
-                                                        class="text-decoration-none">Create Login Token</a>
-                                                </div>
-                                            </div>
+                                                    <!-- Email Authentication -->
+                                                    <div class="setting-item" onclick="account_manageAuthEmail()">
+                                                        <div class="setting-icon">
+                                                            <i class="fas fa-envelope"></i>
+                                                        </div>
+                                                        <div class="setting-content">
+                                                            <h6>Email Authentication</h6>
+                                                            <p class="text-muted">Receive security codes</p>
+                                                        </div>
+                                                        <span id="authEmailSetupCheck"
+                                                            class="badge bg-success-light text-success">
+                                                            <i class="fas fa-check"></i> Active
+                                                        </span>
+                                                    </div>
 
-                                            <div class="list-group-item text-danger">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-trash-alt me-3"></i>
-                                                    <a href="#" onclick="return account_showDeleteAccount()"
-                                                        class="text-decoration-none">Delete Account</a>
+                                                    <!-- Authenticator App -->
+                                                    <div class="setting-item" onclick="account_manageAuthApp()">
+                                                        <div class="setting-icon">
+                                                            <i class="fas fa-mobile"></i>
+                                                        </div>
+                                                        <div class="setting-content">
+                                                            <h6>Authenticator App</h6>
+                                                            <p class="text-muted">Time-based codes</p>
+                                                        </div>
+                                                        <span id="authAppSetupCheck"
+                                                            class="badge bg-success-light text-success">
+                                                            <i class="fas fa-check"></i> Enabled
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- Security Keys -->
+                                                    <div class="setting-item" onclick="account_manageHardwareOtp(0)">
+                                                        <div class="setting-icon">
+                                                            <i class="fas fa-key"></i>
+                                                        </div>
+                                                        <div class="setting-content">
+                                                            <h6>Security Keys</h6>
+                                                            <p class="text-muted">Hardware authentication</p>
+                                                        </div>
+                                                        <span id="authKeySetupCheck"
+                                                            class="badge bg-success-light text-success">
+                                                            <i class="fas fa-check"></i> Set up
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- Login History -->
+                                                    <div class="setting-item" onclick="account_viewPreviousLogins()">
+                                                        <div class="setting-icon">
+                                                            <i class="fas fa-history"></i>
+                                                        </div>
+                                                        <div class="setting-content">
+                                                            <h6>Login History</h6>
+                                                            <p class="text-muted">Recent activity</p>
+                                                        </div>
+                                                        <i class="fas fa-chevron-right"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- Device Groups -->
-                            <div class="card shadow-sm">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <h5 class="card-title fw-bold mb-0">
-                                            <i class="fas fa-network-wired me-2 text-primary"></i>Device Groups
-                                        </h5>
-                                        <span id="p2createMeshLink1">
-                                            <button class="btn btn-sm btn-primary"
-                                                onclick="return account_createMesh()">
-                                                <i class="fas fa-plus-circle me-1"></i>New Group
-                                            </button>
-                                        </span>
-                                    </div>
+                                    <div class="">
+                                        <!-- Device Groups -->
+                                        <div class="card ">
+                                            <div class="card-body">
+                                                <div class="" style="">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="card-icon">
+                                                                <i class="fas fa-network-wired"></i>
+                                                            </div>
+                                                            <h5 class="card-title">Device Groups</h5>
+                                                        </div>
+                                                        <button id="p2createMeshLink1" class="btn btn-primary btn-add"
+                                                            onclick="return account_createMesh()">
+                                                            <i class="fas fa-plus"></i>
+                                                            <span>New Group</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
 
-                                    <div id="p2meshes" class="row g-3"></div>
-                                    <div id="p2noMeshFound" class="text-center py-4 text-muted" style="display:none">
-                                        <i class="fas fa-network-wired fa-2x mb-3 text-muted"></i>
-                                        <p>No device groups found.</p>
-                                        <span id="p2createMeshLink2">
-                                            <button class="btn btn-sm btn-outline-primary"
-                                                onclick="return account_createMesh()">
-                                                <i class="fas fa-plus-circle me-1"></i>Create Your First Group
-                                            </button>
-                                        </span>
+                                                <div class="card-content">
+                                                    <div id="p2meshes" class="device-grid"></div>
+
+                                                    <div id="p2noMeshFound" class="empty-state">
+                                                        <div class="empty-state-icon">
+                                                            <i class="fas fa-network-wired"></i>
+                                                        </div>
+                                                        <h5 class="empty-state-title">No device groups found</h5>
+                                                        <p class="empty-state-text">Get started by creating your first
+                                                            device
+                                                            group
+                                                        </p>
+                                                        <button id="p2createMeshLink2" class="btn btn-outline-primary"
+                                                            onclick="return account_createMesh()">
+                                                            <i class="fas fa-plus"></i>
+                                                            <span>Create First Group</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -912,18 +1012,20 @@
                 </div>
             </div>
 
-            <!-- Events Section -->
-            <div id="p3" style="display:none">
+
+            <!--My Events -->
+            <div id="p3" style="display:none;">
                 <div class="container-fluid p-4">
                     <div id="p3title" class="mb-4">
                         <h1 class="display-6 fw-bold">My Events</h1>
                         <hr class="my-2">
                     </div>
 
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div class="d-flex align-items-center">
+
+                    <div class="card shadow-sm overflow-auto ">
+                        <div class="card-body ">
+                            <div class="d-flex justify-content-between align-items-center mb-3 ">
+                                <div class="d-flex align-items-center ">
                                     <div class="input-group input-group-sm me-3" style="width: 200px;">
                                         <span class="input-group-text"><i class="fas fa-filter"></i></span>
                                         <select id="p3filterevents" class="form-select" onchange="refreshEvents()">
@@ -951,19 +1053,28 @@
                                     </div>
                                 </div>
 
-                                <button class="btn btn-sm btn-outline-primary" onclick="p3showDownloadEventsDialog(2)">
-                                    <i class="fas fa-download me-1"></i>Export
+                                <button class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2"
+                                    onclick="p3showDownloadEventsDialog(2)">
+                                    <i class="fas fa-download"></i>
+                                    Export
                                 </button>
+
                             </div>
 
-                            <div id="p3events" class="table-responsive">
-                                <!-- Events will be loaded here -->
+                            <div class="events-container mb-4">
+                                <div id="p3events" class="modern-table-container">
+                                    <!-- Events will be loaded here -->
+                                </div>
                             </div>
                         </div>
                     </div>
+
+
+
                 </div>
             </div>
 
+            {{!-- User Management --}}
             <div id="p4" style="display:none">
                 <div class="container-fluid p-4">
                     <!-- Header -->
@@ -1025,8 +1136,8 @@
                     </div>
 
                     <!-- Users Table -->
-                    <div id="p3users" class="card shadow-sm">
-                        <div class="card-body p-0">
+                    <div id="p3users" class="card shadow-sm p-2">
+                        <div class="card-body ">
                             <!-- Users will be loaded here -->
                         </div>
                     </div>
@@ -1119,7 +1230,7 @@
                     </div>
 
                     <!-- File Table Area -->
-                    <div id="p5filetable" class="card shadow-sm mb-3">
+                    <div id="p5filetable" class="card shadow-sm mb-3" style="max-height: 400px; overflow:auto">
                         <div class="card-body p-0">
                             <!-- Public Share Notice -->
                             <div id="p5PublicShare" class="alert alert-info m-3" style="display:none">
@@ -1161,7 +1272,7 @@
                 </div>
             </div>
 
-            {{!-- my server --}}
+            {{!-- Server Management --}}
             <div id="p6" style="display:none">
                 <div class="container-fluid p-4">
                     <!-- Header -->
@@ -1175,7 +1286,7 @@
 
                         <!-- Server Actions -->
                         <div class="col-md-6">
-                            <div class="card shadow-sm h-100">
+                            <div class="card shadow-sm ">
                                 <div class="card-body">
                                     <h5 class="card-title fw-bold mb-3">
                                         <i class="fas fa-server me-2 text-primary"></i>Server Actions
@@ -1455,7 +1566,8 @@
                             <span id=connectbutton1hspan><button class="btn btn-primary btn-sm me-1" type=button
                                     id=connectbutton1h title="Connect using hardware KVM"
                                     onclick=connectDesktop(event,2) onkeypress="return false" onkeydown="return false"
-                                    disabled="disabled">HW Connect</button></span>
+                                    disabled="disabled">HW
+                                    Connect</button></span>
                             <div class="btn-group dropdown-center me-1" id=disconnectbutton1span>
                                 <button type="button" class="btn btn btn-primary btn-sm" id=disconnectbutton1
                                     title="Connect using MeshAgent remote desktop" onclick=connectDesktop(event,0)
@@ -1695,11 +1807,13 @@
                                             <li class="ass"><a class="dropdown-item"
                                                     onclick="cmtermaction(8,0,event)"><b>User Shell</b></a></li>
                                             <li class="ass"><a class="dropdown-item"
-                                                    onclick="cmtermaction(9,0,event)">User PowerShell</a></li>
+                                                    onclick="cmtermaction(9,0,event)">User
+                                                    PowerShell</a></li>
                                             <li class="lin"><a class="dropdown-item"
                                                     onclick="cmtermaction(1,0,event)"><b>Root Shell</b></a></li>
                                             <li class="lin"><a class="dropdown-item"
-                                                    onclick="cmtermaction(8,0,event)">User Shell</a></li>
+                                                    onclick="cmtermaction(8,0,event)">User
+                                                    Shell</a></li>
                                             <li class="lin"><a class="dropdown-item"
                                                     onclick="cmtermaction(100,0,event)">Login Shell</a></li>
                                         </ul>
@@ -1708,7 +1822,8 @@
                                         <button type="button" class="btn btn btn-primary btn-sm" id=connectbutton2s
                                             title="Connect using MeshAgent remote desktop"
                                             onclick=connectTerminal(event,3) onkeypress="return false"
-                                            onkeydown="return false" disabled="disabled">SSH Connect</button>
+                                            onkeydown="return false" disabled="disabled">SSH
+                                            Connect</button>
                                         <button type="button"
                                             class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
                                             id=connectbutton2sd data-bs-toggle="dropdown" aria-expanded="false"><span
@@ -2115,143 +2230,192 @@
                 <div id="p19headers"></div>
                 <div id=p19pages></div>
             </div>
-            <div id=p20 style="display:none">
-                <div id=p20main style="overflow-y:auto">
-                    <div id=p20title class="d-flex align-items-center">
-                        <div id="p20BackButton" class="pe-2">
-                            <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack()
-                                title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
-                        </div>
-                        <div class='fs-4 fw-bold'>General - <span id=p20meshName></span></div>
-                    </div>
-                    <picture id=MainMeshImage style=border-width:0px;height:200px;width:200px;float:right>
-                        <source type="image/webp" width=200 height=200 srcset="images/webp/mesh-256.webp" />
-                        <img alt="" width=200 height=200 src=images/mesh-256.png />
-                    </picture>
-                    <p id=p20info></p>
-                    <p id=p20info2></p>
-                </div>
-            </div>
-            <div id=p21 style="display:none">
-                <div id=p21title class="d-flex align-items-center">
-                    <div id="p21BackButton" class="pe-2">
-                        <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack()
-                            title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
-                    </div>
-                    <div class='fs-4 fw-bold'>Summary - <span id=p21meshName></span></div>
-                </div>
-                <div id=p21main style="overflow-y:auto">
-                    <div style="width:100%">
-                        <div style="display:table;width:93%">
-                            <div id="meshPowerChartDiv"
-                                style="width:23%;display:inline-block;text-align:center;max-width:250px">
-                                <div style="margin:10px;font-size:16px">Power States</div>
-                                <canvas id="meshPowerChart" style="width:250px;height:250px"></canvas>
-                            </div>
-                            <div id="meshOsChartDiv"
-                                style="width:23%;display:inline-block;text-align:center;max-width:250px">
-                                <div style="margin:10px;font-size:16px">Agent Types</div>
-                                <canvas id="meshOsChart" style="width:250px;height:250px"></canvas>
-                            </div>
-                            <div id="meshConnChartDiv"
-                                style="width:23%;display:inline-block;text-align:center;max-width:250px">
-                                <div style="margin:10px;font-size:16px">Connectivity</div>
-                                <canvas id="meshConnChart" style="width:250px;height:250px"></canvas>
-                            </div>
-                            <div id="meshSecurityChartDiv"
-                                style="width:23%;display:inline-block;text-align:center;max-width:250px">
-                                <div style="margin:10px;font-size:16px">Security</div>
-                                <canvas id="meshSecurityChart" style="width:250px;height:250px"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <p id=p21info style="overflow-y:auto"></p>
-                </div>
-            </div>
-            <div id=p30 style="display:none">
-                <div id=p30title class="d-flex align-items-center">
-                    <div id="p30BackButton" class="pe-2">
-                        <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack()
-                            title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
-                    </div>
-                    <div class='fs-4 fw-bold'>General - <span id=p30userName></span></div>
-                </div>
-                <div id="p30info" style="overflow-y:auto">
-                    <div class="row">
-                        <div class="col">
-                            <div id="p30html"></div>
-                        </div>
-                        <div class="col-auto" style="width: 20px;"></div>
-                        <div class="col-auto" style="width: 200px; position: relative;">
-                            <img id="p30userAuthServiceLogo" loading="lazy" style="display:none"
-                                class="userAuthStrategyLogo" width="64" height="64">
-                            <picture id="MainUserImage"
-                                style="display:none; border-width:0px; height:200px; width:200px; float:right"
-                                onclick="account_manageImage(1)">
-                                <source type="image/webp" width="200" height="200" srcset="images/webp/user-256.webp" />
-                                <img alt="" width="200" height="200" src="images/user-256.png" />
-                            </picture>
-                            <img id="MainUserImageEx" alt="" width="200" height="200" src="images/user-256.png"
-                                onclick="account_manageImage(1)" />
-                            <div style="width:100%;text-align:center;">
-                                <strong><span id="MainUserState"></span></strong>
-                            </div>
-                        </div>
-                    </div>
-                    <br />
 
+            {{!-- General --}}
+            <div id="p20" style="display:none">
+                <div id="p20main" class="bg-gray-300 rounded-4 shadow-sm p-4 h-100" style="overflow-y:auto">
+                    <div id="p20title" class="d-flex align-items-center mb-4">
+                        <button id="p20BackButton" class="btn btn-link p-0 me-3 text-decoration-none" onclick="goBack()"
+                            title="Back" onkeypress="if (event.key == 'Enter') goBack()">
+                            <i class="fas fa-arrow-left fa-xl text-primary"></i>
+                        </button>
+                        <div class='fs-4 fw-bold text-gradient-primary'>General - <span id="p20meshName"
+                                class="text-muted"></span></div>
+                    </div>
 
-                    <div id=p30html2></div>
-                    <div id=p30html3></div>
+                    <div class="d-flex flex-column flex-lg-row gap-4 h-100">
+                        <div class="flex-grow-1 overflow-auto pe-3">
+                            <p id="p20info" class="text-muted mb-3"></p>
+                            <p id="p20info2" class="text-muted"></p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-
-            <div id=p31 style="display:none">
-                <div id=p31title class="d-flex align-items-center">
-                    <div id="p31BackButton" class="pe-2">
-                        <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack()
-                            title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
+            {{!-- summary --}}
+            <div id="p21" style="display:none">
+                <div class="dashboard-container bg-light rounded-4 shadow-sm p-4 h-100">
+                    <div id="p21title" class="d-flex align-items-center mb-4">
+                        <button id="p21BackButton" class="btn btn-link p-0 me-3 text-decoration-none" onclick="goBack()"
+                            title="Back" onkeypress="if (event.key == 'Enter') goBack()">
+                            <i class="fas fa-arrow-left fa-xl text-primary"></i>
+                        </button>
+                        <div class="fs-4 fw-bold text-gradient-primary">Summary - <span id="p21meshName"
+                                class="text-primary"></span></div>
                     </div>
-                    <div class='fs-4 fw-bold'>Events - <span id=p31userName></span></div>
-                </div>
-                <table class="pTable">
-                    <tr>
-                        {{!-- <td class="h1"></td> --}}
-                        <!--<td>&nbsp;<input type=button onclick=refreshUsersEvents() value="Refresh" /></td>-->
-                        <td class="auto-style1 d-flex justify-content-end p-1">
-                            <div class="d-flex align-items-center">
-                                <label for="p31filterevents" class="me-1">Filter</label>
-                                <select id=p31filterevents class="form-select-sm me-2" onchange=refreshUsersEvents()>
-                                    <option notransval=1 value="">All Logs</option>
-                                    <option notransval=1 value=agentlog>Agent Logs</option>
-                                    <option notransval=1 value=relaylog>Relay Logs</option>
-                                    <option notransval=1 value=manual>Manual Logs</option>
-                                    <option notransval=1 value=runcommands>Run Command Logs</option>
-                                    <option notransval=1 value=batchupload>Batch Upload Logs</option>
-                                    <option notransval=1 value=changenode>Change Node Logs</option>
-                                    <option notransval=1 value=removenode>Remove Node Logs</option>
-                                </select>
-                                <label for="p31limitdropdown" class="me-1">Show</label>
-                                <select id=p31limitdropdown class="form-select-sm me-2" onchange=refreshUsersEvents()>
-                                    <option notransval=1 value=60>Last 60</option>
-                                    <option notransval=1 value=120>Last 120</option>
-                                    <option notransval=1 value=250>Last 250</option>
-                                    <option notransval=1 value=500>Last 500</option>
-                                    <option notransval=1 value=1000>Last 1000</option>
-                                    <option notransval=1 value="">No limit</option>
-                                </select>
-                                <a href=# onclick=p3showDownloadEventsDialog(3)><i class="fa-solid fa-download"
-                                        role="button" title="Download Events"></i></a>
+
+                    <div id="p21main" class="dashboard-content">
+                        <div class="chart-grid mb-4">
+                            <div class="chart-card">
+                                <div class="chart-header">Power States</div>
+                                <div class="chart-container">
+                                    <canvas id="meshPowerChart"></canvas>
+                                </div>
                             </div>
-                        </td>
-                        {{!-- <td class="h2"></td> --}}
-                    </tr>
-                </table>
-                <div id=p31events style=""></div>
+
+                            <div class="chart-card">
+                                <div class="chart-header">Agent Types</div>
+                                <div class="chart-container">
+                                    <canvas id="meshOsChart"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="chart-card">
+                                <div class="chart-header">Connectivity</div>
+                                <div class="chart-container">
+                                    <canvas id="meshConnChart"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="chart-card">
+                                <div class="chart-header">Security</div>
+                                <div class="chart-container">
+                                    <canvas id="meshSecurityChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="p21info" class="dashboard-info bg-white rounded-3 p-3 shadow-sm"></div>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- user general --}}
+            <div id="p30" style="display:none">
+                <div class="profile-container bg-light rounded-4 shadow-sm p-4 d-flex flex-column h-100 "
+                    style="overflow-y:auto">
+                    <div id="p30title" class="d-flex align-items-center mb-4">
+                        <button id="p30BackButton" class="btn btn-link p-0 me-3 text-decoration-none" onclick="goBack()"
+                            title="Back" onkeypress="if (event.key == 'Enter') goBack()">
+                            <i class="fas fa-arrow-left fa-xl text-primary"></i>
+                        </button>
+                        <h2 class="fs-4 fw-bold mb-0">General - <span id="p30userName"
+                                class="text-gradient-primary"></span>
+                        </h2>
+                    </div>
+
+                    <div id="p30info" class="profile-content">
+                        <div class="row g-4">
+                            <div class="col-md-8">
+                                <div id="p30html" class="profile-details bg-white rounded-3 p-3 shadow-sm"></div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="profile-sidebar">
+                                    <div class="user-avatar-container position-relative mb-3">
+                                        <div class="auth-badge">
+                                            <img id="p30userAuthServiceLogo" loading="lazy" style="display:none"
+                                                class="userAuthStrategyLogo rounded-circle border border-3 border-white shadow"
+                                                width="64" height="64">
+                                        </div>
+
+                                        <div class="user-image-wrapper" onclick="account_manageImage(1)">
+                                            <picture id="MainUserImage" style="display:none">
+                                                <source type="image/webp" width="200" height="200"
+                                                    srcset="images/webp/user-256.webp" />
+                                                <img alt="User profile" class="img-fluid rounded-3 shadow" width="200"
+                                                    height="200" src="images/user-256.png" />
+                                            </picture>
+                                            <img id="MainUserImageEx" alt="User profile"
+                                                class="img-fluid rounded-3 shadow" width="200" height="200"
+                                                src="images/user-256.png" />
+                                        </div>
+
+                                        <div class="user-status-badge mt-2">
+                                            <span class="badge bg-primary" id="MainUserState"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-sections mt-4 flex-grow-1 overflow-auto">
+                            <div id="p30html2" class="bg-white rounded-3 p-3 shadow-sm mb-3"></div>
+                            <div id="p30html3" class="bg-white rounded-3 p-3 shadow-sm"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
+            {{!-- user events --}}
+            <div id="p31" style="display:none">
+                <div class="events-container bg-light rounded-4 shadow-sm p-4 d-flex flex-column h-100">
+                    <div id="p31title" class="d-flex align-items-center mb-4">
+                        <button id="p31BackButton" class="btn btn-link p-0 me-3 text-decoration-none" onclick="goBack()"
+                            title="Back" onkeypress="if (event.key == 'Enter') goBack()">
+                            <i class="fas fa-arrow-left fa-xl text-primary"></i>
+                        </button>
+                        <h2 class="fs-4 fw-bold mb-0">Events - <span id="p31userName"
+                                class="text-gradient-primary"></span>
+                        </h2>
+                    </div>
+
+                    <div class="events-toolbar bg-white rounded-3 p-3 shadow-sm mb-4">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                            <div class="d-flex flex-wrap align-items-center gap-2">
+                                <div class="filter-group">
+                                    <label for="p31filterevents" class="form-label-sm mb-0 me-2">Filter:</label>
+                                    <select id="p31filterevents" class="form-select form-select-sm"
+                                        onchange="refreshUsersEvents()">
+                                        <option notransval="1" value="">All Logs</option>
+                                        <option notransval="1" value="agentlog">Agent Logs</option>
+                                        <option notransval="1" value="relaylog">Relay Logs</option>
+                                        <option notransval="1" value="manual">Manual Logs</option>
+                                        <option notransval="1" value="runcommands">Run Command Logs</option>
+                                        <option notransval="1" value="batchupload">Batch Upload Logs</option>
+                                        <option notransval="1" value="changenode">Change Node Logs</option>
+                                        <option notransval="1" value="removenode">Remove Node Logs</option>
+                                    </select>
+                                </div>
+
+                                <div class="filter-group">
+                                    <label for="p31limitdropdown" class="form-label-sm mb-0 me-2">Show:</label>
+                                    <select id="p31limitdropdown" class="form-select form-select-sm"
+                                        onchange="refreshUsersEvents()">
+                                        <option notransval="1" value="60">Last 60</option>
+                                        <option notransval="1" value="120">Last 120</option>
+                                        <option notransval="1" value="250">Last 250</option>
+                                        <option notransval="1" value="500">Last 500</option>
+                                        <option notransval="1" value="1000">Last 1000</option>
+                                        <option notransval="1" value="">No limit</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-sm btn-outline-primary" onclick="p3showDownloadEventsDialog(3)">
+                                <i class="fas fa-download me-1"></i> Download Events
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="p31events" class="events-list bg-white rounded-3 p-3 shadow-sm flex-grow-1 overflow-auto">
+                    </div>
+                </div>
+            </div>
+
+
+            {{!-- server --}}
             <div id="p40" style="display:none">
                 <div class="container-fluid p-4 h-100 d-flex flex-column">
                     <!-- Header -->
@@ -2327,9 +2491,9 @@
                 </style>
             </div>
 
-
+            {{!-- server tracing --}}
             <div id="p41" style="display:none">
-                <div class="container-fluid p-4">
+                <div class="container-fluid p-4 h-100 d-flex flex-column">
                     <!-- Header -->
                     <div id="p41title" class="mb-4">
                         <h1 class="display-6 fw-bold">Server Tracing</h1>
@@ -2375,11 +2539,12 @@
                     </div>
 
                     <!-- Trace Events Display -->
-                    <div class="card shadow-sm">
-                        <div id="p41events" class="card-body p-0" style="overflow-y: auto; max-height: 60vh;">
+                    <div class="card shadow-sm d-flex flex-column h-100">
+                        <div id="p41events" class="card-body p-0 flex-grow-1 h-100 overflow-auto">
                             <!-- Trace events will be displayed here -->
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -2509,7 +2674,7 @@
                 <div id=p52recordings style="overflow-y:auto"></div>
             </div>
 
-
+            {{!-- reports --}}
             <div id="p60" style="display:none">
                 <div class="container-fluid p-4">
                     <!-- Header -->
@@ -2519,7 +2684,7 @@
                     </div>
 
                     <!-- Toolbar -->
-                    <div class="card shadow-sm mb-4">
+                    <div class="card shadow-sm mb-4 ">
                         <div class="card-body p-3">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
@@ -2538,11 +2703,15 @@
                     </div>
 
                     <!-- Report Content -->
-                    <div id="p60report" class="card shadow-sm">
-                        <div class="card-body p-0">
-                            <!-- Report content will be loaded here -->
+                    <div class="modern-table-container" >
+                        <div id="p60report" class="card shadow-sm" >
+                            <div class="card-body p-0" >
+                                <!-- Report content will be loaded here -->
+                            </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -2682,7 +2851,8 @@
                                         <label style="display:block"><input type="checkbox" id="d7deskrmw" />Reverse
                                             Mouse Wheel</label>
                                         <label style="display:block"><input type="checkbox"
-                                                id="d7deskRemoteKeyMap" />Use Remote Keyboard Map</label>
+                                                id="d7deskRemoteKeyMap" />Use
+                                            Remote Keyboard Map</label>
                                         <label style="display:block" id="d7deskAutoClipboardLabel"><input
                                                 type="checkbox" id="d7deskAutoClipboard" />Automatic Clipboard</label>
                                         <label style="display:block" id="d7deskAutoLockLabel"><input type="checkbox"
@@ -2780,11 +2950,12 @@
         </div>
         <iframe name="fileUploadFrame" style="display:none"></iframe>
         <form style="display:none" method=post action=uploadfile.ashx enctype=multipart/form-data
-            target=fileUploadFrame><input id=p5fileDragName name="name" /><input id=p5fileDragAuthCookie
-                name="auth" /><input id=p5fileDragSize name="size" /><input id=p5fileDragType name="type" /><input
-                id=p5fileDragData name="data" /><input id=p5fileDragLink name="link"
-                class="btn btn-outline-success" /><input type=submit id=p5loginSubmit2 style="display:none"
-                class="btn btn-outline-success" /></form>
+            target=fileUploadFrame>
+            <input id=p5fileDragName name="name" /><input id=p5fileDragAuthCookie name="auth" /><input id=p5fileDragSize
+                name="size" /><input id=p5fileDragType name="type" /><input id=p5fileDragData name="data" /><input
+                id=p5fileDragLink name="link" class="btn btn-outline-success" /><input type=submit id=p5loginSubmit2
+                style="display:none" class="btn btn-outline-success" />
+        </form>
         <form style="display:none" method=post action=uploadnodefile.ashx enctype=multipart/form-data
             target=fileUploadFrame><input id=p13fileDragName name="name" class="btn btn-outline-success" /><input
                 id=p13fileDragSize name="size" class="btn btn-outline-success" /><input id=p13fileDragType name="type"
@@ -3011,10 +3182,35 @@
             // Setup logout control
             var logoutControl = '';
             if (logoutControls) {
-                if (logoutControls.name != null) { logoutControl = ('<span onmouseup=go(2) CLASS="LogoffLinkColor" style="cursor:pointer">' + format("Welcome {0}.", logoutControls.name) + '</span>'); }
-                if (logoutControls.logoutUrl != null) { logoutControl += format(' <a href="' + logoutControls.logoutUrl + '" CLASS="LogoffLinkColor">' + "Logout" + '</a>'); }
+                if (logoutControls.name != null) {
+                    logoutControl = `
+                        <div class="user-controls d-inline-flex align-items-center gap-2">
+                            <span onmouseup="go(2)" class="welcome-message d-flex align-items-center gap-2" style="cursor:pointer">
+                                <span class="LogoffLinkColor">${format("Welcome {0}.", logoutControls.name)}</span>
+                                <i class="fas fa-user-circle text-primary"></i>
+                                
+                            </span>
+                    `;
+                }
+                if (logoutControls.logoutUrl != null) {
+                    logoutControl += `
+                            <a href="${logoutControls.logoutUrl}" class="logout-btn d-flex align-items-center gap-1 text-decoration-none">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="LogoffLinkColor">Logout</span>
+                            </a>
+                        </div>
+                    `;
+                } else if (logoutControls.name != null) {
+                    logoutControl += `</div>`;
+                }
             }
-            if (args.hide & 1) { QH('logoutControlSpan2', logoutControl); } else { QH('logoutControlSpan', logoutControl); }
+
+            // Add to DOM - maintaining original logic
+            if (args.hide & 1) {
+                QH('logoutControlSpan2', logoutControl);
+            } else {
+                QH('logoutControlSpan', logoutControl);
+            }
 
             // Setup the context menu
             document.onclick = function (e) { hideContextMenu(); }
@@ -5982,26 +6178,26 @@
                             deviceHeaderId2++;
                             const isCollapsed = CollapsedGroups[mesh._id];
                             const groupTypeMessages = {
-                            1: { 
-                                message: "No Intel® AMT devices in this device group",
-                                action: `addDeviceToMesh('${mesh._id}')`
-                            },
-                            2: {
-                                message: "No devices in this device group",
-                                action: `addAgentToMesh('${mesh._id}')`
-                            },
-                            3: {
-                                message: "No local devices in this device group",
-                                action: `addLocalDeviceToMesh('${mesh._id}')`
-                            },
-                            4: {
-                                message: "No devices in this device group",
-                                action: null
-                            }
+                                1: {
+                                    message: "No Intel® AMT devices in this device group",
+                                    action: `addDeviceToMesh('${mesh._id}')`
+                                },
+                                2: {
+                                    message: "No devices in this device group",
+                                    action: `addAgentToMesh('${mesh._id}')`
+                                },
+                                3: {
+                                    message: "No local devices in this device group",
+                                    action: `addLocalDeviceToMesh('${mesh._id}')`
+                                },
+                                4: {
+                                    message: "No devices in this device group",
+                                    action: null
+                                }
                             };
 
-                            const canAddDevice = ((meshrights & 4) != 0) && 
-                                                ((userinfo.siteadmin == 0xFFFFFFFF) || ((userinfo.siteadmin & 4096) == 0));
+                            const canAddDevice = ((meshrights & 4) != 0) &&
+                                ((userinfo.siteadmin == 0xFFFFFFFF) || ((userinfo.siteadmin & 4096) == 0));
                             const groupInfo = groupTypeMessages[mesh.mtype] || groupTypeMessages[2];
 
                             r += `
@@ -6019,8 +6215,11 @@
                                 style="display: ${isCollapsed ? 'none' : 'block'}">
                                 <p class="text-muted mb-2">
                                 ${groupInfo.message}.
-                                ${canAddDevice && groupInfo.action ? 
-                                    `<a href="#" class="text-primary ms-1" onclick="return ${groupInfo.action}">Add one</a>` : ''}
+                                ${canAddDevice && groupInfo.action ?
+                                    `<a href="#" class="btn btn-sm btn-outline-primary ms-1" onclick="return ${groupInfo.action}">
+                                        <i class="fa-solid fa-circle-plus me-1"></i>Add one
+                                    </a>
+                                    ` : ''}
                                 </p>
                                 <div class="goto-mesh">
                                 <button class="btn btn-sm btn-outline-primary" onclick="gotoMesh('${mesh._id}')">
@@ -6787,7 +6986,7 @@
                 }
             }
             if ((mesh.mtype == 2) && ((userinfo.siteadmin == 0xFFFFFFFF) || ((userinfo.siteadmin & 4096) == 0))) { // Agent device group
-                r += ' <a href=# role="button" title="' + "Add a new computer to this device group by installing the mesh agent." + '" onclick=\'return addAgentToMesh("' + mesh._id + '")\'>' + "Add Agent" + '</a>';
+                r += ' <a href=# class="btn btn-outline-primary btn-sm ms-1" role="button" title="' + "Add a new computer to this device group by installing the mesh agent." + '" onclick=\'return addAgentToMesh("' + mesh._id + '")\'>' + "Add Agent" + '</a>';
                 if ((features & 2) == 0) { r += ' <a href=# role="button" title="' + "Invite someone to install the mesh agent on this device group." + '" onclick=\'return inviteAgentToMesh("' + mesh._id + '")\'>' + "Invite" + '</a>'; }
             }
             if (mesh.mtype == 3) { // Local device group
@@ -13763,7 +13962,7 @@
                     if (printDate(time) != dateHeader) {
                         if (dateHeader != null) x += '</table>';
                         dateHeader = printDate(time);
-                        x += '<table class="table table-hover p3eventsTable" cellpadding=0 cellspacing=0><tr><td colspan=4 class=DevSt>' + dateHeader + '</td></tr>';
+                        x += '<table class="table p3eventsTable" cellpadding=0 cellspacing=0><tr><td colspan=4 class=DevSt>' + dateHeader + '</td></tr>';
                     }
                     var icon = 'fa-mobile-screen';
                     if (event.etype == 'user') icon = 'fa-user';
@@ -15388,26 +15587,26 @@
 
                 // Print the mesh information
                 r += `
-                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-2"
-                            onclick="gotoMesh('` + sortedMeshes[i]._id + `')"
-                            onkeypress="if (event.key=='Enter') gotoMesh('` + sortedMeshes[i]._id + `')"
-                            style="cursor:pointer;">
-                        <div class="card mb-3">
-                            <div class="row g-0">
-                                <div class="col-2 parent" style="display: flex; justify-content: center; align-items: center;">
-                                    <i class="mi me-1"></i>
-                                </div>
-                                <div class="col-10 mx-auto" tabindex="0">
-                                    <div class="card-body" style=padding:0;>
-                                        <h5 class="card-title e1">` + EscapeHtml(sortedMeshes[i].name) + `</h5>
-                                        <p class="card-text">` + rights + `</p>
-                                        <div class="g2"></div>
-                                    </div>
+                    <div class="col-sm-4 col-md-2 col-lg-2 col-xl-6 mb-3"
+                        onclick="gotoMesh('${sortedMeshes[i]._id}')"
+                        onkeypress="if (event.key=='Enter') gotoMesh('${sortedMeshes[i]._id}')"
+                        tabindex="0"
+                        role="button">
+                        <div class="mesh-card ">
+                            <div class="mesh-icon">
+                                <i class="material-icons">dns</i>
+                            </div>
+                            <div class="mesh-content">
+                                <h5 class="mesh-title">${EscapeHtml(sortedMeshes[i].name)}</h5>
+                                <div class="mesh-meta">
+                                    <span class="mesh-rights">${rights}</span>
+                                    <div class="mesh-stats g2"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     `;
+
             }
             r += '</div>';
 
@@ -17519,11 +17718,11 @@
                     if (printDate(time) != dateHeader) {
                         if (dateHeader != null) x += '</table>';
                         dateHeader = printDate(time);
-                        x += '<table class="table table-hover p3eventsTable" cellpadding=0 cellspacing=0><tr><td colspan=4 class=DevSt>' + dateHeader + '</td></tr>';
+                        x += '<table class="" cellpadding=0 cellspacing=0><tr> <td colspan=4 class=DevSt>' + dateHeader + '</td></tr>';
                     }
-                    var icon = 'fa-mobile-screen';
-                    if (event.etype == 'ugrp') icon = 'fa-users';
-                    if (event.etype == 'user') icon = 'fa-user';
+                    var icon = 'fa-display text-primary';
+                    if (event.etype == 'ugrp') icon = 'fa-users ';
+                    if (event.etype == 'user') icon = 'fa-user text-secondary';
                     if (event.etype == 'server') icon = 'fa-server';
 
                     var msg;
@@ -17575,7 +17774,7 @@
                     }
                     if (event.remoteaddr) { msg += ' (' + event.remoteaddr + ')'; }
                     if (event.etype == 'relay' || event.action == 'relaylog') icon = 'fa-arrow-right-arrow-left';
-                    x += '<tr onclick=showEventDetails(' + event.h + ',2)  onmouseover=eventMouseHover(this,1) onmouseout=eventMouseHover(this,0) role=button><td style=width:18px><i class="fa-fw fa-solid ' + icon + '"></i></td><td class=g1>&nbsp;</td><td class=style10>' + printTime(time) + ' - ' + msg + '</td></tr><tr></tr>';
+                    x += '<tr onclick=showEventDetails(' + event.h + ',2)  onmouseout=eventMouseHover(this,0) role=button><td style=width:18px><i class="fa-fw fa-solid ' + icon + '"></i></td><td >&nbsp;</td><td>' + printTime(time) + ' - ' + msg + '</td></tr><tr></tr>';
                 }
             }
             if (dateHeader != null) x += '</table>';
@@ -17679,7 +17878,7 @@
             else if (userSearch.startsWith('n:')) { emailSearch = null; userSearch = userSearch.substring(2); }
 
             // Display the users using the sorted list
-            var x = '<table class="table table-hover" cellpadding=0 cellspacing=0>', addHeader = true;
+            var x = '<table class="user-table " cellpadding=0 cellspacing=0>', addHeader = true;
             x += '<th>' + "Name" + '<th style=width:80px>' + "Device Groups" + '<th style=width:120px>' + nobreak("Last Access") + '<th style=width:120px>' + "Permissions";
 
             // Save the list of currently checked users
