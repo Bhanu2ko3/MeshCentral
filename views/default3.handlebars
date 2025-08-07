@@ -151,7 +151,7 @@
                     title="Click to view current notifications">0</div>
             </div>
             <p id="logoutControl"><span id=logoutControlSpan class="logoncontrolspan"></span><span id=idleTimeoutNotify
-                    style="color:yellow"></span></p>
+                    style=""></span></p>
             <img id="topMenuIcon" class=noselect
                 style="position:absolute;right:0;top:10px;color:#c8c8c8;font-size:44px;margin-right:8px;cursor:pointer;display:none"
                 onclick=topMenu() src="/images/3bars-30.png" width=30 height=30 />
@@ -164,29 +164,36 @@
         {{!-- side bar --}}
         <div class="sidebar" id="page_leftbar">
             <nav class="nav flex-column text-center">
-                <a class="nav-link active" id="LeftMenuMyDevices" href="#" data-target="general" onmouseup="go(1,event)"
+                <a class="nav-link" id="LeftMenuMyDevices" href="#" data-target="Devices" onmouseup="go(1,event)"
                     onkeypress="if (event.key=='Enter') { go(1); }">
-                    <i class="fa-solid fa-computer"></i>
+                    <i class="material-icons" style="font-size: 36px;">devices</i>
+
+                    <span>Devices</span>
                 </a>
-                <a class="nav-link" id="LeftMenuMyAccount" href="#" data-target="account" onmouseup="go(2,event)"
+                <a class="nav-link" id="LeftMenuMyAccount" href="#" data-target="Account" onmouseup="go(2,event)"
                     onkeypress="if (event.key=='Enter') { go(2); }">
-                    <i class="fa-solid fa-user-gear"></i>
+                    <i class="material-icons" style="font-size: 36px;">manage_accounts</i>
+                    <span>Account</span>
                 </a>
-                <a class="nav-link" id="LeftMenuMyEvents" href="#" data-target="events" onmouseup="go(3,event)"
+                <a class="nav-link" id="LeftMenuMyEvents" href="#" data-target="Events" onmouseup="go(3,event)"
                     onkeypress="if (event.key=='Enter') { go(3); }">
-                    <i class="fa-solid fa-calendar-alt"></i>
+                    <i class="material-icons" style="font-size: 36px;">event</i>
+                    <span>Events</span>
                 </a>
-                <a class="nav-link" id="LeftMenuMyFiles" href="#" data-target="files" onmouseup="go(5,event)"
-                    onkeypress="if (event.key=='Enter') { go(5); }">
-                    <i class="fa-solid fa-folder-open"></i>
-                </a>
-                <a class="nav-link" id="LeftMenuMyUsers" href="#" data-target="users" onmouseup="go(4,event)"
+                <a class="nav-link" id="LeftMenuMyUsers" href="#" data-target="Users" onmouseup="go(4,event)"
                     onkeypress="if (event.key=='Enter') { go(4); }">
-                    <i class="fa-solid fa-users"></i>
+                    <i class="material-icons" style="font-size: 36px;">supervisor_account</i>
+                    <span>Users</span>
                 </a>
-                <a class="nav-link" id="LeftMenuMyServer" href="#" data-target="server" onmouseup="go(6,event)"
+                <a class="nav-link" id="LeftMenuMyFiles" href="#" data-target="Files" onmouseup="go(5,event)"
+                    onkeypress="if (event.key=='Enter') { go(5); }">
+                    <i class="material-icons" style="font-size: 36px;">folder</i>
+                    <span>Files</span>
+                </a>
+                <a class="nav-link" id="LeftMenuMyServer" href="#" data-target="Server" onmouseup="go(6,event)"
                     onkeypress="if (event.key=='Enter') { go(6); }">
-                    <i class="fa-solid fa-server"></i>
+                    <i class="material-icons " style="font-size: 36px;">storage</i>
+                    <span>Server</span>
                 </a>
             </nav>
         </div>
@@ -252,7 +259,7 @@
                     {{!-- top bar --}}
 
                     <table id="MainMenuSpan" cellpadding="0" cellspacing="0"
-                        style="width:100%; background-color:#1B3C53; font-family:'Segoe UI', sans-serif; box-shadow:0 2px 5px rgba(0,0,0,0.2); color:white; border-collapse:collapse;">
+                        style="width:100%; background-color:#5a5a5a; font-family:'Segoe UI', sans-serif; box-shadow:0 2px 5px rgba(0,0,0,0.2); color:white; border-collapse:collapse;">
                         <tr>
                             <td tabindex="0" id="MainMenuMyDevices" onmouseup="go(1,event)"
                                 onkeypress="if (event.key == 'Enter') go(1)"
@@ -686,9 +693,26 @@
                         </div>
                     </div>
 
+                    <!-- Add Device Group Button -->
+
+                    <a href="#" onclick="return account_createMesh()"
+                        class="btn btn-primary btn-sm d-inline-flex align-items-center gap-2 px-2 py-1 rounded shadow-sm"
+                        title="Create a new group of devices" style="cursor:pointer;">
+                        <i class="material-icons" style="font-size: 18px;">add</i>
+                        Add Device Group
+                    </a>
+                    <a href="#" onclick="return p10showMeshCmdDialog(0)"
+                        class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2 px-2 py-1 rounded shadow-sm ms-2"
+                        title="Download MeshCmd, a command line tool that performs many functions."
+                        style="cursor:pointer;">
+                        <i class="material-icons" style="font-size: 18px;">terminal</i>
+                        MeshCmd
+                    </a>
+
+
                     <!-- Devices Container -->
-                    <div id="xdevices" class="card-body shadow-sm" style="display:none; overflow: auto;"
-                        onscroll="onDevicesScroll(false)">
+                    <div id="xdevices" class="" style=" overflow: auto; height: 500px;" onscroll="onDevicesScroll(false)">
+
                         <!-- Devices will be loaded here -->
                     </div>
 
@@ -980,7 +1004,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="card-content">
+                                                <div class="card-body">
                                                     <div id="p2meshes" class="device-grid"></div>
 
                                                     <div id="p2noMeshFound" class="empty-state">
@@ -2703,9 +2727,9 @@
                     </div>
 
                     <!-- Report Content -->
-                    <div class="modern-table-container" >
-                        <div id="p60report" class="card shadow-sm" >
-                            <div class="card-body p-0" >
+                    <div class="modern-table-container">
+                        <div id="p60report" class="card shadow-sm">
+                            <div class="card-body p-0">
                                 <!-- Report content will be loaded here -->
                             </div>
                         </div>
@@ -3185,11 +3209,12 @@
                 if (logoutControls.name != null) {
                     logoutControl = `
                         <div class="user-controls d-inline-flex align-items-center gap-2">
-                            <span onmouseup="go(2)" class="welcome-message d-flex align-items-center gap-2" style="cursor:pointer">
-                                <span class="LogoffLinkColor">${format("Welcome {0}.", logoutControls.name)}</span>
-                                <i class="fas fa-user-circle text-primary"></i>
-                                
+                            <span onmouseup="go(2)" class="welcome-message d-flex align-items-center gap-2 hover-effect" style="cursor:pointer">
+                                <span class="LogoffLinkColor" style="color: #00ADB5;">${format("Welcome {0}", logoutControls.name)}</span>
+                                <i class="material-icons" style="color: #00ADB5;">person</i>
                             </span>
+
+                        
                     `;
                 }
                 if (logoutControls.logoutUrl != null) {
@@ -6200,6 +6225,8 @@
                                 ((userinfo.siteadmin == 0xFFFFFFFF) || ((userinfo.siteadmin & 4096) == 0));
                             const groupInfo = groupTypeMessages[mesh.mtype] || groupTypeMessages[2];
 
+                            // devises cards
+
                             r += `
                             <div class="device-group-card mb-3 border rounded">
                             <div class="device-group-header p-3 d-flex align-items-center bg-light rounded-top cursor-pointer"
@@ -6207,7 +6234,7 @@
                                 <div class="toggle-icon me-3">
                                 <i class="fas fa-fw fa-chevron-${isCollapsed ? 'right' : 'down'} transition-all"></i>
                                 </div>
-                                <h3 class="group-name flex-grow-1 mb-0 fw-semibold">${EscapeHtml(mesh.name)}</h3>
+                                <h5 class="group-name flex-grow-1 mb-0 ">${EscapeHtml(mesh.name)}</h5>
                                 <div class="group-actions">${getMeshActions(mesh, meshrights)}</div>
                             </div>
 
@@ -6267,7 +6294,7 @@
                             if (requestedLastConnects == false) { requestedLastConnects = true; meshserver.send({ action: 'lastconnects' }); }
                         }
                         // This height of 1 div at the end to fix a problem in Linux firefox browsers
-                        r = '<table style=width:100%;margin-top:4px;table-layout:fixed cellpadding=0 cellspacing=0><th>' + colums + r + '</tr></table><div style=height:1px></div>';
+                        r = '<table ><th>' + colums + r + '</tr></table><div style=height:1px></div>';
                     }
                 } else {
                     r += '</table>';
@@ -6275,12 +6302,12 @@
                 }
 
                 // Add a "Add Device Group" option
-                r += '<div style=border-top-style:solid;border-top-width:1px;border-top-color:#DDDDDD;cursor:pointer;font-size:small;margin-top:4px>';
+                //r += '<div style=border-top-style:solid;border-top-width:1px;border-top-color:#DDDDDD;cursor:pointer;font-size:small;margin-top:4px>';
                 if ((view < 3) && (sort == 0) && (Object.keys(meshes).length > 0) && ((userinfo.siteadmin == 0xFFFFFFFF) || ((userinfo.siteadmin & 64) == 0))) {
-                    r += '<a href=# onclick="return account_createMesh()" title="' + "Create a new group of devices." + '" style=cursor:pointer>' + "Add Device Group" + '</a>&nbsp';
+                    //r += '<a href=# onclick="return account_createMesh()" title="' + "Create a new group of devices." + '" style=cursor:pointer>' + "Add Device Group" + '</a>&nbsp';
                 }
                 if ((userinfo.siteadmin == 0xFFFFFFFF) || ((userinfo.siteadmin & 128) == 0)) {
-                    r += '<a href=# onclick=\'return p10showMeshCmdDialog(0)\' style=cursor:pointer title="' + "Download MeshCmd, a command line tool that performs many functions." + '">' + "MeshCmd" + '</a>&nbsp';
+                    //r += '<a href=# onclick=\'return p10showMeshCmdDialog(0)\' style=cursor:pointer title="' + "Download MeshCmd, a command line tool that performs many functions." + '">' + "MeshCmd" + '</a>&nbsp';
                     if ((navigator.platform.toLowerCase() == 'win32') || (navigator.platform.toLowerCase() == 'macintel')) { r += '<a href=# onclick=\'return p10showMeshRouterDialog()\' style=cursor:pointer title="' + "Download MeshCentral Router, a TCP port mapping tool." + '">' + "Router" + '</a>&nbsp'; }
                 }
                 r += '</div><div style=height:60px></div>';
@@ -15587,7 +15614,7 @@
 
                 // Print the mesh information
                 r += `
-                    <div class="col-sm-4 col-md-2 col-lg-2 col-xl-6 mb-3"
+                    <div class=" col-xl-6 mb-3"
                         onclick="gotoMesh('${sortedMeshes[i]._id}')"
                         onkeypress="if (event.key=='Enter') gotoMesh('${sortedMeshes[i]._id}')"
                         tabindex="0"
