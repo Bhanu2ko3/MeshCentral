@@ -426,7 +426,6 @@
         </div>
 
 
-
         <div id="column_l" class='pt-3'>
             <div id=p0 style="display:none">
                 <div id=p0message><span id=p0span>Server disconnected</span>, <href onclick=reload()
@@ -2740,7 +2739,9 @@
             </div>
         </div>
 
-        <div id="footer" class="bg-light border-top mt-auto">
+        {{!-- footer --}}
+
+        {{!-- <div id="footer" class="bg-light border-top mt-auto">
             <div class="container-fluid py-3">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
                     <!-- Main Footer Content -->
@@ -2764,7 +2765,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
 
         <div class="modal fade" id="xxAddAgentModal" tabindex="-1" aria-hidden="true">
@@ -19794,7 +19795,7 @@
                     if (printDate(time) != dateHeader) {
                         if (dateHeader != null) x += '</table>';
                         dateHeader = printDate(time);
-                        x += '<table class="table table-hover p3eventsTable" cellpadding=0 cellspacing=0><tr><td colspan=4 class=DevSt>' + dateHeader + '</td></tr>';
+                        x += '<table  cellpadding=0 cellspacing=0><tr><td colspan=4 class=DevSt>' + dateHeader + '</td></tr>';
                     }
                     var icon = 'fa-mobile-screen';
                     if (event.etype == 'user') icon = 'fa-user';
@@ -19832,7 +19833,7 @@
                         msg = '<span title="' + "This is a guest sharing session" + '">' + EscapeHtml(event.guestname) + '</span> &rarr; ' + msg;
                     }
                     if (event.etype == 'relay' || event.action == 'relaylog') icon = 'fa-arrow-right-arrow-left';
-                    x += '<tr onclick=showEventDetails(' + event.h + ',3)  onmouseover=eventMouseHover(this,1) onmouseout=eventMouseHover(this,0) style=cursor:pointer><td style=width:18px><i class="fa-solid ' + icon + '"></i></td><td class=g1>&nbsp;</td><td class=style10>' + printTime(time) + ' - ' + msg + '</td></tr><tr></tr>';
+                    x += '<tr onclick=showEventDetails(' + event.h + ',3)   onmouseout=eventMouseHover(this,0) style=cursor:pointer><td style=width:18px><i class="fa-solid ' + icon + '"></i></td><td >&nbsp;</td><td >' + printTime(time) + ' - ' + msg + '</td></tr><tr></tr>';
                 }
             }
             if (dateHeader != null) x += '</table>';
