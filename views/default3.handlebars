@@ -264,7 +264,7 @@
                             <td tabindex="0" id="MainMenuMyDevices" onmouseup="go(1,event)"
                                 onkeypress="if (event.key == 'Enter') go(1)"
                                 style="padding:14px 20px; font-size:15px; cursor:pointer; text-align:center; transition:0.3s; white-space:nowrap;"
-                                onmouseover="this.style.backgroundColor='#00ADB5'; this.style.borderRadius='4px';"
+                                onmouseover="this.style.backgroundColor='#0d6efd'; this.style.borderRadius='4px';"
                                 onmouseout="this.style.backgroundColor='transparent';">
                                 My Devices
                             </td>
@@ -272,7 +272,7 @@
                             <td tabindex="0" id="MainMenuMyAccount" onmouseup="go(2,event)"
                                 onkeypress="if (event.key == 'Enter') go(2)"
                                 style="padding:14px 20px; font-size:15px; cursor:pointer; text-align:center; transition:0.3s; white-space:nowrap;"
-                                onmouseover="this.style.backgroundColor='#00ADB5'; this.style.borderRadius='4px';"
+                                onmouseover="this.style.backgroundColor='#0d6efd'; this.style.borderRadius='4px';"
                                 onmouseout="this.style.backgroundColor='transparent';">
                                 My Account
                             </td>
@@ -280,7 +280,7 @@
                             <td tabindex="0" id="MainMenuMyEvents" onmouseup="go(3,event)"
                                 onkeypress="if (event.key == 'Enter') go(3)"
                                 style="padding:14px 20px; font-size:15px; cursor:pointer; text-align:center; transition:0.3s; white-space:nowrap;"
-                                onmouseover="this.style.backgroundColor='#00ADB5'; this.style.borderRadius='4px';"
+                                onmouseover="this.style.backgroundColor='#0d6efd'; this.style.borderRadius='4px';"
                                 onmouseout="this.style.backgroundColor='transparent';">
                                 My Events
                             </td>
@@ -288,7 +288,7 @@
                             <td tabindex="0" id="MainMenuMyFiles" onmouseup="go(5,event)"
                                 onkeypress="if (event.key == 'Enter') go(5)"
                                 style="padding:14px 20px; font-size:15px; cursor:pointer; text-align:center; transition:0.3s; white-space:nowrap;"
-                                onmouseover="this.style.backgroundColor='#00ADB5'; this.style.borderRadius='4px';"
+                                onmouseover="this.style.backgroundColor='#0d6efd'; this.style.borderRadius='4px';"
                                 onmouseout="this.style.backgroundColor='transparent';">
                                 My Files
                             </td>
@@ -296,7 +296,7 @@
                             <td tabindex="0" id="MainMenuMyUsers" onmouseup="go(4,event)"
                                 onkeypress="if (event.key == 'Enter') go(4)"
                                 style="padding:14px 20px; font-size:15px; cursor:pointer; text-align:center; transition:0.3s; white-space:nowrap;"
-                                onmouseover="this.style.backgroundColor='#00ADB5'; this.style.borderRadius='4px';"
+                                onmouseover="this.style.backgroundColor='#0d6efd'; this.style.borderRadius='4px';"
                                 onmouseout="this.style.backgroundColor='transparent';">
                                 My Users
                             </td>
@@ -304,7 +304,7 @@
                             <td tabindex="0" id="MainMenuMyServer" onmouseup="go(6,event)"
                                 onkeypress="if (event.key == 'Enter') go(6)"
                                 style="padding:14px 20px; font-size:15px; cursor:pointer; text-align:center; transition:0.3s; white-space:nowrap;"
-                                onmouseover="this.style.backgroundColor='#00ADB5'; this.style.borderRadius='4px';"
+                                onmouseover="this.style.backgroundColor='#0d6efd'; this.style.borderRadius='4px';"
                                 onmouseout="this.style.backgroundColor='transparent';">
                                 My Server
                             </td>
@@ -710,7 +710,8 @@
 
 
                     <!-- Devices Container -->
-                    <div id="xdevices" class="" style=" overflow: auto; height: 500px;" onscroll="onDevicesScroll(false)">
+                    <div id="xdevices" class="" style=" overflow: auto; height: 500px;"
+                        onscroll="onDevicesScroll(false)">
 
                         <!-- Devices will be loaded here -->
                     </div>
@@ -3210,12 +3211,10 @@
                 if (logoutControls.name != null) {
                     logoutControl = `
                         <div class="user-controls d-inline-flex align-items-center gap-2">
-                            <span onmouseup="go(2)" class="welcome-message d-flex align-items-center gap-2 hover-effect" style="cursor:pointer">
-                                <span class="LogoffLinkColor" style="color: #00ADB5;">${format("Welcome {0}", logoutControls.name)}</span>
-                                <i class="material-icons" style="color: #00ADB5;">person</i>
-                            </span>
-
-                        
+                            <span onmouseup="go(2)" class="welcome-message d-flex align-items-center gap-2 " style="cursor:pointer">
+                                <span class="LogoffLinkColor" style="color: #0d6efd;">${format("Welcome {0}", logoutControls.name)}</span>
+                                <i class="material-icons" style="color: #0d6efd;">person</i>
+                            </span>  
                     `;
                 }
                 if (logoutControls.logoutUrl != null) {
