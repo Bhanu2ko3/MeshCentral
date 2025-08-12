@@ -162,7 +162,7 @@
         </div>
 
         {{!-- side bar --}}
-        <div class="sidebar" id="page_leftbar">
+        <div class="sidebar card" id="page_leftbar">
             <nav class="nav flex-column text-center">
                 <a class="nav-link" id="LeftMenuMyDevices" href="#" data-target="Devices" onmouseup="go(1,event)"
                     onkeypress="if (event.key=='Enter') { go(1); }">
@@ -3710,7 +3710,7 @@
                 QC('body').add('night'); QS('body')['background-color'] = '#000';
             } else {
                 document.documentElement.setAttribute('data-bs-theme', 'light');
-                QC('body').remove('night'); QS('body')['background-color'] = '#d3d9d6';
+                QC('body').remove('night'); QS('body')['background-color'] = '';
             }
             return nightMode;
         }

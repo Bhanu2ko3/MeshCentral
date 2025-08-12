@@ -21,7 +21,7 @@ body {
     color: black;
     font-size: 13px;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    background-color: #d3d9d6;
+    background-color: #ffffff;
     /* overflow-y: hidden; */
 }
 
@@ -30,15 +30,15 @@ body {
 }
 
 #container {  
-    background-color:#EEEEEE;
+
     width: 960px;
     min-width: 960px;
     max-height: 100%;
-    
 }
 
+
 .night #container {
-    color: #bbb;
+    color: #ffffff;
     background-color: #000;
 }
 
@@ -78,9 +78,7 @@ body {
     width: 100%;
     min-width: 100%;
     min-height: 0px;
-    border-right: 0px none #b7b7b7;
-    border-left: 0px none #b7b7b7;
-    height: calc(100% - 0px);
+    height: 100%;
     position: relative;
     display: -ms-grid;
     display: grid;
@@ -97,24 +95,6 @@ body {
     grid-template-rows: 66px 24px auto 0px;
 }
 
-.fulldesk #container {
-    width: 100%;
-    height: 100%;
-    min-width: 700px;
-    min-height: 0px;
-    border-right: 0px none #b7b7b7;
-    border-left: 0px none #b7b7b7;
-    position: unset;
-    position: relative;
-    display: -ms-grid !important;
-    display: grid !important;
-    grid-gap: 0px;
-    grid-template-areas: "content" !important;
-    -ms-grid-columns: 1fr;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)) !important;
-    -ms-grid-rows: 1fr;
-    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr)) !important;
-}
 
 .AgentInviteMasthead {
     background: url(logo.png) 0px 0px;
@@ -632,7 +612,7 @@ body {
 #d3serveraction,
 #d2serveraction {
     width: 100%;
-    background-color: #d3d9d6;
+    background-color: #000000;
     text-align: left;
     padding: 3px;
 }
@@ -2455,6 +2435,7 @@ nav .lbbuttonsel {
 }
 
 .e1t {
+
     font-size: large;
     margin-bottom: 3px;
     overflow: hidden;
@@ -4674,8 +4655,7 @@ nav .lbbuttonsel2:hover i {
     overflow-y: hidden;
     display: none;
     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border-radius: 20px;
+    border-radius: 0px 20px 20px 0px;
     position:absolute;
 
 }
