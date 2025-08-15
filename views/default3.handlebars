@@ -21,6 +21,9 @@
     <link type="text/css" href="styles/custom.css" media="screen" rel="stylesheet" title="CSS" />
     <link rel="apple-touch-icon" href="/favicon-303x303.png" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script type="text/javascript" src="scripts/common-0.0.1{{{min}}}.js"></script>
@@ -437,11 +440,6 @@
                 <div class="container-fluid p-4">
                     <!-- Header Section -->
                     <div id="p1title" class="mb-4">
-                        <!-- Header -->
-                        <div id="p2title" class="mb-4">
-                            <h1 class="display-6 fw-bold">My Devices</h1>
-                            <hr class="my-2">
-                        </div>
 
                         <!-- View Icons -->
                         <div id="devListToolbarViewIcons" class="btn-group" style="display:none">
@@ -499,6 +497,11 @@
                                     <i class="fas fa-map-marked-alt"></i>
                                 </button>
                             </div>
+                        </div>
+                        <!-- Header -->
+                        <div id="p2title" class="mb-4">
+                            <h1 class="display-6 fw-bold">My Devices</h1>
+                            <hr class="my-2">
                         </div>
                     </div>
 
@@ -693,19 +696,21 @@
 
                     <!-- Add Device Group Button -->
 
-                    <a href="#" onclick="return account_createMesh()"
-                        class="btn btn-primary btn-sm d-inline-flex align-items-center gap-2 px-2 py-1 rounded shadow-sm"
-                        title="Create a new group of devices" style="cursor:pointer;">
-                        <i class="material-icons" style="font-size: 18px;">add</i>
-                        Add Device Group
-                    </a>
-                    <a href="#" onclick="return p10showMeshCmdDialog(0)"
-                        class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2 px-2 py-1 rounded shadow-sm ms-2"
-                        title="Download MeshCmd, a command line tool that performs many functions."
-                        style="cursor:pointer;">
-                        <i class="material-icons" style="font-size: 18px;">terminal</i>
-                        MeshCmd
-                    </a>
+                    <div class=" mb-4">
+                        <a href="#" onclick="return account_createMesh()"
+                            class="btn btn-primary btn-sm d-inline-flex align-items-center gap-2 px-2 py-1 rounded shadow-sm"
+                            title="Create a new group of devices" style="cursor:pointer;">
+                            <i class="material-icons" style="font-size: 18px;">add</i>
+                            Add Device Group
+                        </a>
+                        <a href="#" onclick="return p10showMeshCmdDialog(0)"
+                            class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2 px-2 py-1 rounded shadow-sm ms-2"
+                            title="Download MeshCmd, a command line tool that performs many functions."
+                            style="cursor:pointer;">
+                            <i class="material-icons" style="font-size: 18px;">terminal</i>
+                            MeshCmd
+                        </a>
+                    </div>
 
 
                     <!-- Devices Container -->
@@ -716,7 +721,7 @@
                     </div>
 
                     <!-- Map Container -->
-                    <div id="xdevicesmap" class="card-body shadow-sm" style="display:none; height: 600px;">
+                    <div id="xdevicesmap" class="" style="display:none; height: 600px;">
                         <!-- Map Search Results Dialog -->
                         <div id="xmapSearchResultsDlg" class="card shadow"
                             style="display:none; position: absolute; z-index: 1000; width: 300px;">
@@ -738,7 +743,7 @@
 
             {{!-- my account --}}
             <div id="p2" style="display:none;">
-                <div class="container-fluid p-4  ">
+                <div class="container-fluid p-4 ">
                     <!-- Header -->
                     <div id="p2title" class="mb-4">
                         <h1 class="display-6 fw-bold">My Account</h1>
@@ -1044,7 +1049,6 @@
                         <hr class="my-2">
                     </div>
 
-
                     <div class="card shadow-sm overflow-auto ">
                         <div class="card-body ">
                             <div class="d-flex justify-content-between align-items-center mb-3 ">
@@ -1084,7 +1088,7 @@
 
                             </div>
 
-                            <div class="events-container mb-4">
+                            <div class="events-container ">
                                 <div id="p3events" class="modern-table-container">
                                     <!-- Events will be loaded here -->
                                 </div>
@@ -1457,77 +1461,101 @@
                 </div>
             </div>
 
-            <div id=p10 style="display:none">
-                <div id=p10title class="d-flex align-items-center">
-                    <div id="p10BackButton" class="pe-2">
-                        <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack()
-                            title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
-                    </div>
-                    <div class='fs-4 fw-bold'>General - <span id=p10deviceName></span></div>
+            {{!-- device general --}}
+            <div id="p10" class="device-details-container" style="display:none">
+                <div class="device-header d-flex align-items-center mb-4">
+                    <button id="p10BackButton" class="btn btn-icon me-3" onclick="goBack()" title="Back">
+                        <i class="fas fa-arrow-left fa-xl"></i>
+                    </button>
+                    <h3 class="m-0">General - <span id="p10deviceName" class="text-primary"></span></h3>
                 </div>
-                <div id=p10info style="overflow-y:auto" class="pt-3">
-                    <table style="width:100%" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td style=width:auto valign=top>
-                                <div id=p10html></div>
-                            </td>
-                            <td style=width:100px;display:none id=notesPanel valign=top>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Notes</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div id=notesPanelArea
-                                                    style=width:300px;height:200px;resize:none;overflow-y:scroll></div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td style=width:20px></td>
-                            <td style=width:200px;vertical-align:top;position:relative valign=top>
-                                <div class="deviceNotifyLargeDot">
-                                    <div id="p10deviceMsg" onclick=showDeviceMessages(null,null,event)
-                                        class=deviceNotifyDotSub></div>
-                                    <i title="Starred" role=button class="fa-solid fa-star" id="p10deviceStar"
-                                        onclick=showDeviceSessions(null,null,event) data-fa-transform="shrink-5"
-                                        data-fa-mask="fa-solid fa-circle"></i>
-                                    <i title="List of remote sessions active on this computer." role=button
-                                        class="fa-solid fa-arrow-right-arrow-left" id="p10deviceNotify"
-                                        onclick=showDeviceSessions(null,null,event) data-fa-transform="shrink-5"
-                                        data-fa-mask="fa-solid fa-circle"></i>
-                                    <i title="Help Requested" role=button class="fa-solid fa-question"
-                                        id="p10deviceHelp" onclick=showDeviceHelpRequests(null,null,event)
-                                        data-fa-transform="shrink-5" data-fa-mask="fa-solid fa-circle"></i>
+
+                <div id="p10info" class="device-content">
+                    <div class="row g-4">
+                        <div class="col-lg-8 col-xl-9">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <div id="p10html" class="device-info-content"></div>
                                 </div>
-                                <div id="p10deviceBattery" class="deviceBatteryLarge deviceBatteryLarge1"></div>
-                                <a href=# onclick=p10showiconselector()><img id=MainComputerImage></a>
-                                <div id=MainComputerState></div>
-                            </td>
-                        </tr>
-                    </table><br />
-                    <div id=p10html2></div>
-                    <div id=p10html3></div>
-                    <div id=p10html4></div>
-                    <div id=p10html5></div>
+                            </div>
+
+                            <div class="mt-4">
+                                <div id="p10html2" class="mb-3"></div>
+                                <div id="p10html3" class="mb-3"></div>
+                                <div id="p10html4" class="mb-3"></div>
+                                <div id="p10html5"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-xl-3">
+                            <div class="sticky-top" style="">
+                                <div class="card shadow-sm mb-4">
+                                    <div class="card-body text-center">
+                                        <div class="device-status-indicators mb-3">
+                                            <div class="position-relative d-inline-block">
+                                                <div id="p10deviceMsg" onclick="showDeviceMessages(null,null,event)"
+                                                    class="status-dot message-dot" title="Messages"></div>
+                                                <button class="status-icon star-icon" id="p10deviceStar"
+                                                    onclick="showDeviceSessions(null,null,event)" title="Starred">
+                                                    <i class="fas fa-star"></i>
+                                                </button>
+                                                <button class="status-icon session-icon" id="p10deviceNotify"
+                                                    onclick="showDeviceSessions(null,null,event)"
+                                                    title="Active Remote Sessions">
+                                                    <i class="fas fa-arrow-right-arrow-left"></i>
+                                                </button>
+                                                <button class="status-icon help-icon" id="p10deviceHelp"
+                                                    onclick="showDeviceHelpRequests(null,null,event)"
+                                                    title="Help Requested">
+                                                    <i class="fas fa-question"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div id="p10deviceBattery" class="device-battery-large mb-3"></div>
+
+                                        <div class="device-image-container mb-3">
+                                            <a href="#" onclick="p10showiconselector()" class="d-block">
+                                                <img id="MainComputerImage" class="img-fluid rounded-circle border p-1"
+                                                    style="width: 120px; height: 120px; object-fit: cover;">
+                                            </a>
+                                        </div>
+
+                                        <div id="MainComputerState" class="badge bg-primary fs-6 mt-2"></div>
+                                    </div>
+                                </div>
+
+                                <div id="notesPanel" class="card shadow-sm" style="display:none">
+                                    <div class="card-header bg-light">
+                                        <h5 class="m-0">Notes</h5>
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <div id="notesPanelArea" class="notes-textarea p-3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div id=p11 class="noselect" style="display:none">
-                <div id="p11title" class="d-flex align-items-center">
-                    <div id="p11BackButton" class="pe-2">
-                        <i class="fa-solid fa-2xl fa-square-caret-left" role="button" tabindex=0 onclick=goBack()
-                            title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
-                    </div>
-                    <div class='fs-4 fw-bold'>Desktop - <span id=p11deviceName></span></div>
+
+            {{!-- device desktop --}}
+            <div id=p11 class="device-details-container" style="display:none">
+                <div id="p11title" class="device-header d-flex align-items-center mb-4">
+                    <button id="p10BackButton" class="btn btn-icon me-3" onclick="goBack()" title="Back">
+                        <i class="fas fa-arrow-left fa-xl"></i>
+                    </button>
+                    <h3 class='m-0'>Desktop - <span id=p11deviceName class="text-primary"></span></h3>
+
                     <div id="devListToolbarViewIcons" class="ms-auto">
-                        <i class="fa-solid fa-xl fa-maximize fa-border" role="button" onclick=deskToggleFull(event)
-                            title="Full Screen. Hold shift to browser full screen."></i>
+                        <button class="btn btn-icon" onclick="deskToggleFull(event)"
+                            title="Full Screen. Hold shift to browser full screen." data-bs-toggle="tooltip"
+                            data-bs-placement="bottom">
+                            <i class="fas fa-expand fa-lg"></i>
+                        </button>
                     </div>
+
                 </div>
                 <div id="p11warning" onclick="showFeaturesDlg()">
                     <div class="icon2"></div>
@@ -1639,6 +1667,7 @@
                             </div>
                         </div>
                     </div>
+                    {{!-- streming area --}}
                     <div id=deskarea3x>
                         <div id="p11bigok" style="display:none"><b>&checkmark;</b></div>
                         <div id="p11bigfail" style="display:none"><b>&#10007;</b></div>
@@ -1683,6 +1712,8 @@
                             style="display:none;position:absolute;left:30px;top:17px;right:30px;bottom:17px;overflow-y:auto">
                         </div>
                     </div>
+
+                    {{!-- footer area --}}
                     <div id=deskarea4 class="areaFoot d-flex flex-wrap">
                         <div class="d-flex align-items-center">
                             <select id="deskkeys" class="form-select-sm me-1" cmenu=deskKeyShortcutContextMenu></select>
@@ -1768,17 +1799,19 @@
                 </div>
             </div>
 
-
-            <div id=p12 style="display:none">
-                <div id="p12title" class="d-flex align-items-center">
-                    <div id="p12BackButton" class="pe-2">
-                        <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack()
-                            title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
-                    </div>
-                    <div class='fs-4 fw-bold'>Terminal - <span id=p12deviceName></span></div>
-                    <div id="devListToolbarViewIcons2" class="ms-auto">
-                        <i class="fa-solid fa-xl fa-maximize fa-border" role="button" onclick=deskToggleFull(event)
-                            title="Full Screen. Hold shift to browser full screen."></i>
+            {{!-- device terminal --}}
+            <div id=p12 style="display:none" class="device-details-container">
+                <div id="p12title" class="device-header d-flex align-items-center mb-4">
+                    <button id="p10BackButton" class="btn btn-icon me-3" onclick="goBack()" title="Back">
+                        <i class="fas fa-arrow-left fa-xl"></i>
+                    </button>
+                    <h3 class='m-0'>Terminal - <span id=p12deviceName class="text-primary"></span></h3>
+                    <div id="devListToolbarViewIcons" class="ms-auto">
+                        <button class="btn btn-icon" onclick="deskToggleFull(event)"
+                            title="Full Screen. Hold shift to browser full screen." data-bs-toggle="tooltip"
+                            data-bs-placement="bottom">
+                            <i class="fas fa-expand fa-lg"></i>
+                        </button>
                     </div>
                 </div>
                 <div id="p12warning" onclick=showFeaturesDlg()>
@@ -1792,306 +1825,449 @@
                     </div>
                 </div>
                 <div id=termTable style="position:relative">
-                    <table style="width:100%" cellpadding=0 cellspacing=0>
-                        <tr>
-                            <td class="areaHead d-flex flex-wrap">
-                                <div class="d-flex align-items-center">
-                                    <button type="button" id="autoconnectbutton2" class="btn btn-primary btn-sm me-1"
-                                        onclick=autoConnectTerminal(event) onkeypress="return false"
-                                        onkeydown="return false" style="display:none"><i class="fa-solid fa-play"></i>
-                                        AutoConnect</button>
-                                    <div class="btn-group dropdown-center me-1" id=connectbutton2span>
-                                        <button type="button" class="btn btn btn-primary btn-sm" id=connectbutton2
-                                            title="Connect using MeshAgent remote desktop"
-                                            onclick=connectTerminal(event,1) onkeypress="return false"
-                                            onkeydown="return false" disabled="disabled">Connect</button>
-                                        <button type="button"
-                                            class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
-                                            id=connectbutton2d data-bs-toggle="dropdown" aria-expanded="false"
-                                            onclick=newContextMenu(event,1)><span class="visually-hidden">Toggle
-                                                Dropdown</span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" onclick="cmtermaction(1,0,event)"><b>Admin
-                                                        Shell</b></a></li>
-                                            <li><a class="dropdown-item" onclick="cmtermaction(6,0,event)">Admin
-                                                    PowerShell</a></li>
-                                            <li><a class="dropdown-item" onclick="cmtermaction(8,0,event)">User
-                                                    Shell</a></li>
-                                            <li><a class="dropdown-item" onclick="cmtermaction(9,0,event)">User
-                                                    PowerShell</a></li>
-                                            <li><a class="dropdown-item" onclick="cmtermaction(1,0x10,event)">Ask Admin
-                                                    Shell</a></li>
-                                            <li><a class="dropdown-item" onclick="cmtermaction(6,0x10,event)">Ask Admin
-                                                    PowerShell</a></li>
-                                            <li><a class="dropdown-item" onclick="cmtermaction(8,0x10,event)">Ask User
-                                                    Shell</a></li>
-                                            <li><a class="dropdown-item" onclick="cmtermaction(9,0x10,event)">Ask User
-                                                    PowerShell</a></li>
-                                            <li class="ass"><a class="dropdown-item"
-                                                    onclick="cmtermaction(8,0,event)"><b>User Shell</b></a></li>
-                                            <li class="ass"><a class="dropdown-item"
-                                                    onclick="cmtermaction(9,0,event)">User
-                                                    PowerShell</a></li>
-                                            <li class="lin"><a class="dropdown-item"
-                                                    onclick="cmtermaction(1,0,event)"><b>Root Shell</b></a></li>
-                                            <li class="lin"><a class="dropdown-item"
-                                                    onclick="cmtermaction(8,0,event)">User
-                                                    Shell</a></li>
-                                            <li class="lin"><a class="dropdown-item"
-                                                    onclick="cmtermaction(100,0,event)">Login Shell</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="btn-group dropdown-center me-1" id=connectbutton2sspan>
-                                        <button type="button" class="btn btn btn-primary btn-sm" id=connectbutton2s
-                                            title="Connect using MeshAgent remote desktop"
-                                            onclick=connectTerminal(event,3) onkeypress="return false"
-                                            onkeydown="return false" disabled="disabled">SSH
-                                            Connect</button>
-                                        <button type="button"
-                                            class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
-                                            id=connectbutton2sd data-bs-toggle="dropdown" aria-expanded="false"><span
-                                                class="visually-hidden">Toggle Dropdown</span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" onclick="cmsshportaction(1,event)">Alternate
-                                                    Port</a></li>
-                                        </ul>
-                                    </div>
-                                    <span id="connectbutton2hspan"><button type="button"
-                                            class="btn btn-primary btn-sm me-1" id="connectbutton2h"
-                                            title="Connect using Intel&reg; AMT hardware KVM"
-                                            onclick=connectTerminal(event,2) onkeypress="return false"
-                                            onkeydown="return false" disabled="disabled">HW Connect</button></span>
-                                    <span id="disconnectbutton2span"><button type="button"
-                                            class="btn btn-primary btn-sm me-1" id="disconnectbutton2"
-                                            onclick=connectTerminal(event,0) onkeypress="return false"
-                                            onkeydown="return false">Disconnect</button></span>
-                                    <span id="termstatus" style="line-height:22px">Disconnected</span><span
-                                        id="termtitle"></span>
+                    <div class="card shadow-sm terminal-container">
+                        <!-- Terminal Toolbar -->
+                        <div class="card-header bg-light d-flex flex-wrap align-items-center py-2">
+                            <div class="d-flex align-items-center flex-wrap gap-2">
+                                <!-- Connection Buttons -->
+                                <button type="button" id="autoconnectbutton2" class="btn btn-success btn-sm"
+                                    onclick="autoConnectTerminal(event)" onkeypress="return false"
+                                    onkeydown="return false" style="display:none">
+                                    <i class="fas fa-play me-1"></i> AutoConnect
+                                </button>
+
+                                <div class="btn-group" id="connectbutton2span">
+                                    <button type="button" class="btn btn-primary btn-sm" id="connectbutton2"
+                                        title="Connect using MeshAgent remote desktop"
+                                        onclick="connectTerminal(event,1)" onkeypress="return false"
+                                        onkeydown="return false" disabled>
+                                        <i class="fas fa-plug me-1"></i> Connect
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
+                                        id="connectbutton2d" data-bs-toggle="dropdown" aria-expanded="false"
+                                        onclick="newContextMenu(event,1)">
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" onclick="cmtermaction(1,0,event)"><i
+                                                    class="fas fa-shield-alt me-1"></i> Admin Shell</a></li>
+                                        <li><a class="dropdown-item" onclick="cmtermaction(6,0,event)"><i
+                                                    class="fab fa-windows me-1"></i> Admin PowerShell</a></li>
+                                        <li><a class="dropdown-item" onclick="cmtermaction(8,0,event)"><i
+                                                    class="fas fa-user me-1"></i> User Shell</a></li>
+                                        <li><a class="dropdown-item" onclick="cmtermaction(9,0,event)"><i
+                                                    class="fab fa-windows me-1"></i> User PowerShell</a></li>
+                                        <li class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" onclick="cmtermaction(1,0x10,event)"><i
+                                                    class="fas fa-question-circle me-1"></i> Ask Admin Shell</a></li>
+                                        <li><a class="dropdown-item" onclick="cmtermaction(6,0x10,event)"><i
+                                                    class="fas fa-question-circle me-1"></i> Ask Admin PowerShell</a>
+                                        </li>
+                                        <li><a class="dropdown-item" onclick="cmtermaction(8,0x10,event)"><i
+                                                    class="fas fa-question-circle me-1"></i> Ask User Shell</a></li>
+                                        <li><a class="dropdown-item" onclick="cmtermaction(9,0x10,event)"><i
+                                                    class="fas fa-question-circle me-1"></i> Ask User PowerShell</a>
+                                        </li>
+                                        <li class="dropdown-divider ass"></li>
+                                        <li class="ass"><a class="dropdown-item" onclick="cmtermaction(8,0,event)"><i
+                                                    class="fas fa-user me-1"></i> User Shell</a></li>
+                                        <li class="ass"><a class="dropdown-item" onclick="cmtermaction(9,0,event)"><i
+                                                    class="fab fa-windows me-1"></i> User PowerShell</a></li>
+                                        <li class="dropdown-divider lin"></li>
+                                        <li class="lin"><a class="dropdown-item" onclick="cmtermaction(1,0,event)"><i
+                                                    class="fas fa-shield-alt me-1"></i> Root Shell</a></li>
+                                        <li class="lin"><a class="dropdown-item" onclick="cmtermaction(8,0,event)"><i
+                                                    class="fas fa-user me-1"></i> User Shell</a></li>
+                                        <li class="lin"><a class="dropdown-item" onclick="cmtermaction(100,0,event)"><i
+                                                    class="fas fa-sign-in-alt me-1"></i> Login Shell</a></li>
+                                    </ul>
                                 </div>
-                                <div class="d-flex align-items-center ms-auto">
-                                    <div id="idx_termFullBtn2" onclick=deskToggleFull(event) style="float:right">
-                                        &nbsp;&#x2716;</div>
-                                    <div id="termRecordIcon" class='deskareaicon'
-                                        title="Server is recording this session"
-                                        style="display:none;background-color:red;width:12px;height:12px;border-radius:6px;margin-top:5px;margin-left:5px">
-                                    </div>
-                                    <input id="termActionsBtn" type=button title="Perform power actions on the device"
-                                        onkeypress="return false" onkeydown="return false" value=Actions
-                                        class="btn btn-primary me-1 btn-sm" onclick=deviceActionFunction() />
-                                    <div id="terminalCustomUpperRight" style="float:left;margin-right:6px"></div>
-                                    <div id="terminalCustomUiButtons" style="float:left"></div>
+
+                                <div class="btn-group" id="connectbutton2sspan">
+                                    <button type="button" class="btn btn-primary btn-sm" id="connectbutton2s"
+                                        title="Connect using MeshAgent remote desktop"
+                                        onclick="connectTerminal(event,3)" onkeypress="return false"
+                                        onkeydown="return false" disabled>
+                                        <i class="fas fa-network-wired me-1"></i> SSH
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
+                                        id="connectbutton2sd" data-bs-toggle="dropdown" aria-expanded="false">
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" onclick="cmsshportaction(1,event)"><i
+                                                    class="fas fa-exchange-alt me-1"></i> Alternate Port</a></li>
+                                    </ul>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="termarea3x">
-                                <div id="termarea3xdiv" style="width:100%;height:100%;text-align:left"></div>
-                                <pre id="Term"></pre>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="areaFoot d-flex flex-wrap">
-                                <div class="d-flex align-items-center">
-                                    <input type=button onkeypress="return false" onkeydown="return false"
-                                        class="btn btn-primary btn-sm me-1" id="ctrlcbutton" value="Ctl-C"
-                                        onclick="termSendKey(3,'ctrlcbutton')" />
-                                    <input type=button onkeypress="return false" onkeydown="return false"
-                                        class="btn btn-primary btn-sm me-1" id="ctrlxbutton" value="Ctl-X"
-                                        onclick="termSendKey(24,'ctrlxbutton')" />
-                                    <input type=button onkeypress="return false" onkeydown="return false"
-                                        class="btn btn-primary me-1 btn-sm" id="escbutton" value="ESC"
-                                        onclick="termSendKey(27,'escbutton')" />
-                                    <input type=button onkeypress="return false" onkeydown="return false"
-                                        class="btn btn-primary me-1 btn-sm" id="bsbutton" value="Backspace"
-                                        onclick="termSendKey(8,'bsbutton')" style="display:none" />
-                                    <input type=button onkeypress="return false" onkeydown="return false"
-                                        class="btn btn-primary me-1 btn-sm" id="pastebutton" value="Paste"
-                                        title="Paste text into the terminal" onclick="showTermPasteDialog()"
-                                        style="display:none" />
+
+                                <span id="connectbutton2hspan">
+                                    <button type="button" class="btn btn-primary btn-sm" id="connectbutton2h"
+                                        title="Connect using Intel&reg; AMT hardware KVM"
+                                        onclick="connectTerminal(event,2)" onkeypress="return false"
+                                        onkeydown="return false" disabled>
+                                        <i class="fas fa-microchip me-1"></i> HW Connect
+                                    </button>
+                                </span>
+
+                                <span id="disconnectbutton2span">
+                                    <button type="button" class="btn btn-danger btn-sm" id="disconnectbutton2"
+                                        onclick="connectTerminal(event,0)" onkeypress="return false"
+                                        onkeydown="return false">
+                                        <i class="fas fa-power-off me-1"></i> Disconnect
+                                    </button>
+                                </span>
+
+                                <span id="termstatus" class="badge bg-secondary ms-2">Disconnected</span>
+                                <span id="termtitle" class="ms-2 text-muted"></span>
+                            </div>
+
+                            <div class="d-flex align-items-center ms-auto gap-2">
+                                <div id="idx_termFullBtn2" class="btn btn-outline-secondary btn-sm"
+                                    onclick="deskToggleFull(event)">
+                                    <i class="fas fa-expand"></i>
                                 </div>
-                                <div class="d-flex align-items-center ms-auto">
-                                    <span id="TermTimer" title="Session time"></span>&nbsp;
-                                    <span id="terminalSettingsButtons" style="display:none">
-                                        <input id="id_tcrbutton" type="button" onkeypress="return false"
-                                            onkeydown="return false" class="btn btn-primary me-1 btn-sm" value="CR+LF"
-                                            title="Toggle what the return key will send" onclick="termToggleCr()" />
-                                        <input id="id_tfxkeysbutton" type="button" onkeypress="return false"
-                                            onkeydown="return false" class="btn btn-primary me-1 btn-sm"
-                                            value="Intel (F10 = ESC+[OM)" title="Toggle F1 to F10 keys emulation type"
-                                            onclick="termToggleFx()" />
-                                        <input id="id_ttypebutton" type="button" onkeypress="return false"
-                                            onkeydown="return false" class="btn btn-primary me-1 btn-sm"
-                                            value="Extended Ascii" title="Toggle terminal emulation type"
-                                            onclick="termToggleType()" />
-                                    </span>
-                                    <span id="terminalSizeDropDown" style="display:none">
-                                        <select id="termSizeList" onkeypress="return false" class="form-select-sm me-1">
-                                            <option value="1">80x25</option>
-                                            <option value="2">100x30</option>
-                                        </select>
-                                    </span>
-                                    <select id="specialkeylist" class="form-select-sm me-1"
-                                        onkeypress="return false"></select>
-                                    <input id="specialkeylistinput" type="button" onkeypress="return false"
-                                        class="btn btn-primary btn-sm me-1" value="Send"
-                                        title="Send the selected special key" onclick="sendSpecialKey()" />
+
+                                <div id="termRecordIcon" class="badge bg-danger"
+                                    title="Server is recording this session" style="display:none">
+                                    <i class="fas fa-circle me-1"></i> Recording
                                 </div>
-                            </td>
-                        </tr>
-                    </table>
+
+                                <button id="termActionsBtn" type="button" class="btn btn-outline-primary btn-sm"
+                                    title="Perform power actions on the device" onclick="deviceActionFunction()">
+                                    <i class="fas fa-bolt me-1"></i> Actions
+                                </button>
+
+                                <div id="terminalCustomUpperRight"></div>
+                                <div id="terminalCustomUiButtons"></div>
+                            </div>
+                        </div>
+
+                        <!-- Terminal Display Area -->
+                        <div class="card-body p-0 terminal-display">
+                            <div id="termarea3x">
+                                <div id="termarea3xdiv" class="terminal-content" style="width:100%;height:100%;text-align:left;padding:3px"></div>
+                                <pre id="Term" class=""></pre>
+                            </div>
+                        </div>
+
+                        <!-- Terminal Footer Controls -->
+                        <div class="card-footer bg-light py-2 d-flex flex-wrap">
+                            <div class="d-flex align-items-center flex-wrap gap-2">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" id="ctrlcbutton"
+                                    onclick="termSendKey(3,'ctrlcbutton')">
+                                    <i class="fas fa-terminal me-1"></i> Ctrl-C
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" id="ctrlxbutton"
+                                    onclick="termSendKey(24,'ctrlxbutton')">
+                                    <i class="fas fa-terminal me-1"></i> Ctrl-X
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" id="escbutton"
+                                    onclick="termSendKey(27,'escbutton')">
+                                    <i class="fas fa-keyboard me-1"></i> ESC
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" id="bsbutton"
+                                    onclick="termSendKey(8,'bsbutton')" style="display:none">
+                                    <i class="fas fa-backspace me-1"></i> Backspace
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" id="pastebutton"
+                                    title="Paste text into the terminal" onclick="showTermPasteDialog()"
+                                    style="display:none">
+                                    <i class="fas fa-paste me-1"></i> Paste
+                                </button>
+                            </div>
+
+                            <div class="d-flex align-items-center ms-auto flex-wrap gap-2">
+                                <span id="TermTimer" class="badge bg-light text-dark">
+                                    <i class="fas fa-clock me-1"></i> <span>00:00:00</span>
+                                </span>
+
+                                <div id="terminalSettingsButtons" style="display:none" class="d-flex gap-2">
+                                    <button id="id_tcrbutton" type="button" class="btn btn-outline-secondary btn-sm"
+                                        title="Toggle what the return key will send" onclick="termToggleCr()">
+                                        CR+LF
+                                    </button>
+                                    <button id="id_tfxkeysbutton" type="button" class="btn btn-outline-secondary btn-sm"
+                                        title="Toggle F1 to F10 keys emulation type" onclick="termToggleFx()">
+                                        Intel (F10)
+                                    </button>
+                                    <button id="id_ttypebutton" type="button" class="btn btn-outline-secondary btn-sm"
+                                        title="Toggle terminal emulation type" onclick="termToggleType()">
+                                        Extended Ascii
+                                    </button>
+                                </div>
+
+                                <div id="terminalSizeDropDown" style="display:none" class="ms-2">
+                                    <select id="termSizeList" class="form-select form-select-sm">
+                                        <option value="1">80x25</option>
+                                        <option value="2">100x30</option>
+                                    </select>
+                                </div>
+
+                                <div class="d-flex gap-2">
+                                    <select id="specialkeylist" class="form-select form-select-sm"></select>
+                                    <button id="specialkeylistinput" type="button" class="btn btn-primary btn-sm"
+                                        title="Send the selected special key" onclick="sendSpecialKey()">
+                                        Send
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div id=p12TermConsoleMsg
                         style="display:none;text-align:left;cursor:pointer;position:absolute;left:30px;top:45px;color:yellow;background-color:rgba(0,0,0,0.6);padding:10px;border-radius:5px"
                         onclick=p12clearConsoleMsg()></div>
                 </div>
             </div>
 
+            {{!-- device files --}}
+            <div id=p13 style="display:none;" class="device-details-container">
+                <div id="p13title" class="device-header d-flex align-items-center mb-4">
+                    <button id="p10BackButton" class="btn btn-icon me-3" onclick="goBack()" title="Back">
+                        <i class="fas fa-arrow-left fa-xl"></i>
+                    </button>
+                    <h3 class='m-0'>Files - <span id=p13deviceName class="text-primary"></span></h3>
+                </div>
+                <div id="p13toolbar" class="card shadow-sm mb-3">
+                    <!-- Connection Status Bar -->
+                    <div class="card-header bg-light d-flex flex-wrap align-items-center py-2">
+                        <div class="d-flex align-items-center flex-wrap gap-2">
+                            <!-- Connection Buttons Group -->
+                            <div class="btn-group" role="group">
+                                <button id="p13AutoConnect" onclick="autoConnectFiles(event)"
+                                    class="btn btn-success btn-sm" type="button" style="display:none">
+                                    <i class="fas fa-play me-1"></i> AutoConnect
+                                </button>
 
-            <div id=p13 style="display:none">
-                <div id="p13title" class="d-flex align-items-center">
-                    <div id="p13BackButton" class="pe-2">
-                        <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack()
-                            title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
+                                <div class="btn-group" id="p13Connectspan">
+                                    <button type="button" class="btn btn-primary btn-sm rounded-1" id="p13Connect"
+                                        title="Connect using MeshAgent remote desktop" onclick="connectFiles(event,1)"
+                                        onkeypress="return false" onkeydown="return false" disabled>
+                                        <i class="fas fa-plug me-1"></i> Connect
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-primary btn-sm dropdown-toggle rounded-2 dropdown-toggle-split"
+                                        id="p13Connectdrop" data-bs-toggle="dropdown" aria-expanded="false">
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" onclick="cmconnectfilesaction()"><i
+                                                    class="fas fa-question-circle me-1"></i> Ask Consent</a></li>
+                                    </ul>
+                                </div>
+
+                                <button id="p13Disconnect" class="btn btn-danger btn-sm rounded-1"
+                                    onclick="connectFiles(event)" type="button">
+                                    <i class="fas fa-power-off me-1"></i> Disconnect
+                                </button>
+
+
+                                <div class="btn-group" id="p13Connectsspan">
+                                    <button type="button" class="btn btn-primary btn-sm" id="p13Connects"
+                                        title="Connect using MeshAgent remote desktop" onclick="connectFiles(event,2)"
+                                        onkeypress="return false" onkeydown="return false" disabled>
+                                        <i class="fas fa-network-wired me-1"></i> SFTP
+                                    </button>
+                                    <button type="button"
+                                        class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
+                                        id="p13Connectsdrop" data-bs-toggle="dropdown" aria-expanded="false">
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" onclick="cmsshportaction(1,event)"><i
+                                                    class="fas fa-exchange-alt me-1"></i> Alternate Port</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <span id="p13Status" class="badge bg-secondary ">Disconnected</span>
+                        </div>
+
+                        <div class="d-flex align-items-center ms-auto gap-2">
+                            <button id="filesActionsBtn" class="btn btn-outline-primary btn-sm" type="button"
+                                title="Perform power actions on the device" onclick="deviceActionFunction()">
+                                <i class="fas fa-bolt me-1"></i> Actions
+                            </button>
+
+                            <div id="filesRecordIcon" class="badge bg-danger" title="Server is recording this session"
+                                style="display:none">
+                                <i class="fas fa-circle"></i> Recording
+                            </div>
+
+                            <div id="filesCustomUpperRight" class="ms-2"></div>
+                            <div id="filesCustomUiButtons"></div>
+                        </div>
                     </div>
-                    <div class='fs-4 fw-bold'>Files - <span id=p13deviceName></span></div>
-                </div>
-                <table id="p13toolbar" cellpadding="0" cellspacing="0">
-                    <tr>
-                        <td class="areaHead d-flex flex-wrap">
-                            <div class="d-flex align-items-center">
-                                <button id=p13AutoConnect onclick=autoConnectFiles(event)
-                                    class="btn btn-primary btn-sm me-1" type="button" style="display:none"><i
-                                        class="fa-solid fa-play"></i> AutoConnect</button>
-                                <div class="btn-group dropdown-center me-1" id=p13Connectspan>
-                                    <button type="button" class="btn btn btn-primary btn-sm" id=p13Connect
-                                        title="Connect using MeshAgent remote desktop" onclick=connectFiles(event,1)
-                                        onkeypress="return false" onkeydown="return false"
-                                        disabled="disabled">Connect</button>
-                                    <button type="button"
-                                        class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
-                                        id=p13Connectdrop data-bs-toggle="dropdown" aria-expanded="false"><span
-                                            class="visually-hidden">Toggle Dropdown</span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" onclick="cmconnectfilesaction()">Ask Consent</a>
-                                        </li>
-                                    </ul>
+
+                    <!-- File Actions Toolbar -->
+                    <div class="card-body py-2">
+                        <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                            <div id="p13rightOfButtons" class="d-flex align-items-center me-auto"></div>
+
+                            <div class="d-flex flex-wrap align-items-center gap-2">
+                                <button type="button" disabled id="p13FolderUp" class="btn btn-outline-secondary btn-sm"
+                                    onclick="p13folderup()">
+                                    <i class="fas fa-level-up-alt me-1"></i> Up
+                                </button>
+
+                                <div class="btn-group" role="group">
+                                    <button type="button" disabled id="p13SelectAllButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13selectallfile()">
+                                        <i class="fas fa-check-square me-1"></i> Select All
+                                    </button>
+                                    <button type="button" disabled id="p13RenameFileButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13renamefile()">
+                                        <i class="fas fa-i-cursor me-1"></i> Rename
+                                    </button>
+                                    <button type="button" disabled id="p13DeleteFileButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13deletefile()">
+                                        <i class="fas fa-trash-alt me-1"></i> Delete
+                                    </button>
                                 </div>
-                                <button id=p13Disconnect class="btn btn-primary btn-sm me-1" onclick=connectFiles(event)
-                                    type="button">Disconnect</button>
-                                <div class="btn-group dropdown-center me-1" id=p13Connectsspan>
-                                    <button type="button" class="btn btn btn-primary btn-sm" id=p13Connects
-                                        title="Connect using MeshAgent remote desktop" onclick=connectFiles(event,2)
-                                        onkeypress="return false" onkeydown="return false" disabled="disabled">SFTP
-                                        Connect</button>
-                                    <button type="button"
-                                        class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
-                                        id=p13Connectsdrop data-bs-toggle="dropdown" aria-expanded="false"><span
-                                            class="visually-hidden">Toggle Dropdown</span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" onclick="cmsshportaction(1,event)">Alternate
-                                                Port</a></li>
-                                    </ul>
+
+                                <div class="btn-group" role="group">
+                                    <button type="button" disabled id="p13ViewFileButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13viewfile()">
+                                        <i class="fas fa-edit me-1"></i> Edit
+                                    </button>
+                                    <button type="button" disabled id="p13NewFolderButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13createfolder()">
+                                        <i class="fas fa-folder-plus me-1"></i> New
+                                    </button>
                                 </div>
-                                <span id=p13Status>Disconnected</span>
-                            </div>
-                            <div class="d-flex align-items-center ms-auto">
-                                <input id="filesActionsBtn" class="btn btn-primary me-1 btn-sm" type=button
-                                    title="Perform power actions on the device" value=Actions
-                                    onclick=deviceActionFunction() />
-                                <div id="filesRecordIcon" class='deskareaicon' title="Server is recording this session"
-                                    style="display:none;background-color:red;width:12px;height:12px;border-radius:6px;margin-top:5px;margin-left:5px">
+
+                                <div class="btn-group" role="group">
+                                    <button type="button" disabled id="p13UploadButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13uploadFile()">
+                                        <i class="fas fa-upload me-1"></i> Upload
+                                    </button>
+                                    <button type="button" disabled id="p13DownloadButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13downloadButton()">
+                                        <i class="fas fa-download me-1"></i> Download
+                                    </button>
                                 </div>
-                                <div id="filesCustomUpperRight" style="float:left;margin-right:6px"></div>
-                                <div id="filesCustomUiButtons" style="float:left"></div>
+
+                                <div class="btn-group" role="group">
+                                    <button type="button" disabled id="p13CutButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13copyFile(1)">
+                                        <i class="fas fa-cut me-1"></i> Cut
+                                    </button>
+                                    <button type="button" disabled id="p13CopyButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13copyFile(0)">
+                                        <i class="fas fa-copy me-1"></i> Copy
+                                    </button>
+                                    <button type="button" disabled id="p13PasteButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13pasteFile()">
+                                        <i class="fas fa-paste me-1"></i> Paste
+                                    </button>
+                                </div>
+
+                                <div class="btn-group" role="group">
+                                    <button type="button" disabled id="p13ZipButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13zipFiles()">
+                                        <i class="fas fa-file-archive me-1"></i> Zip
+                                    </button>
+                                    <button type="button" disabled id="p13UnzipButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13unzipFile()">
+                                        <i class="fas fa-file-archive me-1"></i> Unzip
+                                    </button>
+                                </div>
+
+                                <div class="btn-group" role="group">
+                                    <button type="button" disabled id="p13RefreshButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13folderup(9999)">
+                                        <i class="fas fa-sync-alt me-1"></i> Refresh
+                                    </button>
+                                    <button type="button" disabled id="p13FindButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13findfile()">
+                                        <i class="fas fa-search me-1"></i> Find
+                                    </button>
+                                    <button type="button" disabled id="p13GoToFolderButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13gotofolder()">
+                                        <i class="fas fa-folder-open me-1"></i> GoTo
+                                    </button>
+                                    <button type="button" disabled id="p13OpenButton"
+                                        class="btn btn-outline-secondary btn-sm" onclick="p13openfilefolder()">
+                                        <i class="fas fa-external-link-alt me-1"></i> Open
+                                    </button>
+                                </div>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="areaHead2 d-flex align-items-center flex-wrap" valign=bottom>
-                            <div id="p13rightOfButtons" class="toright2 d-flex align-items-center"></div>
-                            <div class="d-flex align-items-center">
-                                <input type=button disabled="disabled" id=p13FolderUp
-                                    class="btn btn-primary me-1 btn-sm" value="Up" onclick="p13folderup()" />
-                                <input type=button disabled="disabled" id=p13SelectAllButton
-                                    class="btn btn-primary me-1 btn-sm" value="Select All"
-                                    onclick="p13selectallfile()" />
-                                <input type=button disabled="disabled" id=p13RenameFileButton
-                                    class="btn btn-primary me-1 btn-sm" value="Rename" onclick="p13renamefile()" />
-                                <input type=button disabled="disabled" id=p13DeleteFileButton
-                                    class="btn btn-primary me-1 btn-sm" value="Delete" onclick="p13deletefile()" />
-                                <input type=button disabled="disabled" id=p13ViewFileButton
-                                    class="btn btn-primary me-1 btn-sm" value="Edit" onclick="p13viewfile()" />
-                                <input type=button disabled="disabled" id=p13NewFolderButton
-                                    class="btn btn-primary me-1 btn-sm" value="New Folder"
-                                    onclick="p13createfolder()" />
-                                <input type=button disabled="disabled" id=p13UploadButton
-                                    class="btn btn-primary me-1 btn-sm" value="Upload" onclick="p13uploadFile()" />
-                                <input type=button disabled="disabled" id=p13DownloadButton
-                                    class="btn btn-primary me-1 btn-sm" value="Download"
-                                    onclick="p13downloadButton()" />
-                                <input type=button disabled="disabled" id=p13CutButton
-                                    class="btn btn-primary me-1 btn-sm" value="Cut" onclick="p13copyFile(1)" />
-                                <input type=button disabled="disabled" id=p13CopyButton
-                                    class="btn btn-primary me-1 btn-sm" value="Copy" onclick="p13copyFile(0)" />
-                                <input type=button disabled="disabled" id=p13PasteButton
-                                    class="btn btn-primary me-1 btn-sm" value="Paste" onclick="p13pasteFile()" />
-                                <input type=button disabled="disabled" id=p13ZipButton
-                                    class="btn btn-primary me-1 btn-sm" value="Zip" onclick="p13zipFiles()" />
-                                <input type=button disabled="disabled" id=p13UnzipButton
-                                    class="btn btn-primary me-1 btn-sm" value="Unzip" onclick="p13unzipFile()" />
-                                <input type=button disabled="disabled" id=p13RefreshButton
-                                    class="btn btn-primary me-1 btn-sm" value="Refresh" onclick="p13folderup(9999)" />
-                                <input type=button disabled="disabled" id=p13FindButton
-                                    class="btn btn-primary me-1 btn-sm" value="Find" onclick="p13findfile()" />
-                                <input type=button disabled="disabled" id=p13GoToFolderButton
-                                    class="btn btn-primary me-1 btn-sm" value="GoTo" onclick="p13gotofolder()" />
-                                <input type=button disabled="disabled" id=p13OpenButton
-                                    class="btn btn-primary me-1 btn-sm" value="Open" onclick="p13openfilefolder()" />
+                        </div>
+
+                        <!-- Path and View Options -->
+                        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 pt-2 border-top">
+                            <div class="text-truncate flex-grow-1">
+                                <span id="p13currentpath" class="text-muted small"></span>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="areaHead3">
-                            <div class="toright2">
-                                <select id=p13sizedropdown class="form-select-sm me-2" onchange=p13updateFiles()>
-                                    <option value=0 selected="selected">Human Readable</option>
-                                    <option value=1 title=Bytes>Bytes</option>
-                                    <option value=10 title=KB>Kilobytes</option>
-                                    <option value=20 title=MB>Megabytes</option>
-                                    <option value=30 title=GB>Gigabyte</option>
+
+                            <div class="d-flex align-items-center gap-2">
+                                <select id="p13sizedropdown" class="form-select form-select-sm" style="width: 160px;"
+                                    onchange="p13updateFiles()">
+                                    <option value="0" selected>Human Readable</option>
+                                    <option value="1" title="Bytes">Bytes</option>
+                                    <option value="10" title="KB">Kilobytes</option>
+                                    <option value="20" title="MB">Megabytes</option>
+                                    <option value="30" title="GB">Gigabyte</option>
                                 </select>
-                                <select id=p13sortdropdown class="form-select-sm me-2" onchange=p13updateFiles()>
-                                    <option value=1 selected="selected">Sort by name</option>
-                                    <option value=2>Sort by size</option>
-                                    <option value=3>Sort by date</option>
-                                    <option value=4>Descend by name</option>
-                                    <option value=5>Descend by size</option>
-                                    <option value=6>Descend by date</option>
+
+                                <select id="p13sortdropdown" class="form-select form-select-sm" style="width: 140px;"
+                                    onchange="p13updateFiles()">
+                                    <option value="1" selected>Sort by name</option>
+                                    <option value="2">Sort by size</option>
+                                    <option value="3">Sort by date</option>
+                                    <option value="4">Descend by name</option>
+                                    <option value="5">Descend by size</option>
+                                    <option value="6">Descend by date</option>
                                 </select>
                             </div>
-                            <div>&nbsp;&nbsp;<span id="p13currentpath"></span></div>
-                        </td>
-                    </tr>
-                </table>
-                <div id=p13FilesConsoleMsg
-                    style="display:none;text-align:left;cursor:pointer;position:absolute;left:30px;top:165px;color:yellow;background-color:rgba(0,0,0,0.6);padding:10px;border-radius:5px"
-                    onclick=p13clearConsoleMsg()></div>
-                <div id="p13filetable" style="">
-                    <div id="p13bigok" style="display:none"><b>&checkmark;</b></div>
-                    <div id="p13bigfail" style="display:none"><b>&#10007;</b></div>
-                    <span id="p13files"></span>
+                        </div>
+                    </div>
                 </div>
-                <table id="p13toolbarBottom" cellpadding=0 cellspacing=0>
+                <!-- Console Message Toast -->
+                <div id="p13FilesConsoleMsg"
+                    class="toast align-items-center text-white bg-dark border-0 position-absolute top-0 start-0 m-3"
+                    style="display:none; z-index: 1000; max-width: 80%;" role="alert" aria-live="assertive"
+                    aria-atomic="true" onclick="p13clearConsoleMsg()">
+                    <div class="d-flex">
+                        <div class="toast-body"></div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                    </div>
+                </div>
+
+                <!-- File Table Container -->
+                <div class="card shadow-sm mt-3">
+                    <div id="p13filetable" class="card-body p-0">
+                        <!-- Status Indicators -->
+                        <div id="p13bigok" class="d-none text-center py-5">
+                            <div class="display-1 text-success">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="h4 text-muted mt-2">Operation Successful</div>
+                        </div>
+
+                        <div id="p13bigfail" class="d-none text-center py-5">
+                            <div class="display-1 text-danger">
+                                <i class="fas fa-times-circle"></i>
+                            </div>
+                            <div class="h4 text-muted mt-2">Operation Failed</div>
+                        </div>
+
+                        <!-- Files Container -->
+                        <div id="p13files" class="table-responsive p-3"></div>
+                    </div>
+                </div>
+
+                <table id="p13toolbarBottom" class="card my-3" cellpadding=0 cellspacing=0>
                     <tr>
                         <td class=style6>&nbsp;<span id="p13bottomstatus"></span></td>
                     </tr>
                 </table>
             </div>
+
+            {{!-- device remote desktop --}}
             <div id=p14 style="display:none">
                 <div id="p14title" class="d-flex align-items-center">
-                    <div id="p14BackButton" class="pe-2">
-                        <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack()
-                            title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
-                    </div>
+                    <button id="p10BackButton" class="btn btn-icon me-3" onclick="goBack()" title="Back">
+                        <i class="fas fa-arrow-left fa-xl"></i>
+                    </button>
                     <div class='fs-4 fw-bold'><span id=p14deviceNamePrefix>Intel&reg; AMT</span> - <span
                             id=p14deviceName></span></div>
                     <div id="devListToolbarViewIcons" class="ms-auto">
@@ -2101,144 +2277,182 @@
                 </div>
                 <iframe id=p14iframe src="{{{domainurl}}}commander.ashx"></iframe>
             </div>
-            <div id=p15 style="display:none">
-                <div id="p15title" class="d-flex align-items-center">
-                    <div id="p15BackButton" class="pe-2">
-                        <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack()
-                            title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
-                    </div>
-                    <div class='fs-4 fw-bold'><span id=p15deviceName></span></div>
+
+            {{!-- device console --}}
+            <div id=p15 style="display:none" class="device-details-container">
+                <div id="p15title" class="device-header d-flex align-items-center mb-4">
+                    <button id="p10BackButton" class="btn btn-icon me-3" onclick="goBack()" title="Back">
+                        <i class="fas fa-arrow-left fa-xl"></i>
+                    </button>
+                    <h3 class='m-0'>Console - <span id=p15deviceName></span></h3>
                 </div>
-                <table id="consoleTable" cellpadding=0 cellspacing=0>
-                    <tr>
-                        <td class="areaHead d-flex flex-wrap">
-                            <div id="p15statetext" class="d-flex align-items-center"></div>
-                            <div class="d-flex align-items-center ms-auto">
-                                <div id=p15coreName class="me-1"
-                                    title="Information about current core running on this agent"></div>
-                                <input type=button id=p15uploadCore class="btn btn-primary me-1 btn-sm"
-                                    value="Agent Action" onclick=p15uploadCore(event)
-                                    title="Change the agent Java Script code module" />
-                                <i onclick=p15downloadConsoleText() title="Download console text"
-                                    class="fa-solid fa-download me-1"></i>
+                <div class="">
+                    <div id="consoleContainer" style="">
+                        <!-- Header -->
+                        <div class="console-header card d-flex flex-wrap align-items-center p-3 bg-light border">
+                            <!-- Status Text -->
+
+                            <div class="d-flex align-items-center ms-auto gap-2">
+                                <div id="p15statetext" class="status-text me-3">
+                                    <span class="badge bg-secondary">Status: Active</span>
+                                </div>
+                                <!-- Core Info Badge -->
+                                <div id="p15coreName" class="core-info-badge" data-bs-toggle="tooltip"
+                                    title="Information about current core running on this agent">
+                                    <i class="fas fa-microchip me-1"></i>
+                                    <span>Core v2.4.1</span>
+                                </div>
+
+                                <!-- Agent Action Button -->
+                                <button id="p15uploadCore" class="btn btn-primary" onclick="p15uploadCore(event)"
+                                    data-bs-toggle="tooltip" title="Change the agent Java Script code module">
+                                    <i class="fas fa-code me-1"></i>
+                                    <span>Agent Action</span>
+                                </button>
+
+                                <!-- Download Button -->
+                                <button class="btn btn-secondary" onclick="p15downloadConsoleText()"
+                                    data-bs-toggle="tooltip" title="Download console text">
+                                    <i class="fas fa-download"></i>
+                                </button>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="areaProgress">
-                                <div id="consoleprogressbar" style=""></div>
+                        </div>
+
+                        <!-- Console Output -->
+                        <div class="">
+                            <div id="p15agentConsole">
+                                <pre id="p15agentConsoleText"></pre>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id=p15agentConsole>
-                            <pre id=p15agentConsoleText></pre>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="areaFoot">
-                            <table style="width:100%">
-                                <tr>
-                                    <td style="width:99%">
-                                        <input id=p15consoleText class="form-control" onkeyup=p15consoleSend(event)
-                                            onfocus=onConsoleFocus(1) onblur=onConsoleFocus(0) />
-                                    </td>
-                                    <td>&nbsp;</td>
-                                    <td id="p15outputselecttd">
-                                        <select id=p15outputselect onchange="setupConsole()">
-                                            <option id="p15outputselect1" value=1>Agent</option>
-                                            <option id="p15outputselect3" value=3>Push</option>
-                                            <option id="p15outputselect2" value=2>MQTT</option>
-                                        </select>
-                                    </td>
-                                    <td style="width:1%"><input id="id_p15consoleClear" type="button"
-                                            class="btn btn-primary bottombutton" value="Clear"
-                                            onclick="p15consoleClear()" /></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                        </div>
 
 
-            <div id=p16 style="display:none">
-                <div id="p16title" class="d-flex align-items-center">
-                    <div id="p16BackButton" class="pe-2">
-                        <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack()
-                            title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
-                    </div>
-                    <div class='fs-4 fw-bold'>Events - <span id=p16deviceName></span></div>
-                </div>
-                <table class="pTable">
-                    <tr>
-                        <td class="auto-style1 d-flex justify-content-end p-1">
+                        <!-- Footer -->
+                        <div class="card" style="border: none;">
                             <div class="d-flex align-items-center">
-                                <label class="me-1" for="p16filterevents">Filter</label>
-                                <select id=p16filterevents class="form-control-sm me-2" onchange=refreshDeviceEvents()>
-                                    <option notransval=1 value="">All Logs</option>
-                                    <option notransval=1 value=agentlog>Agent Logs</option>
-                                    <option notransval=1 value=relaylog>Relay Logs</option>
-                                    <option notransval=1 value=manual>Manual Logs</option>
-                                    <option notransval=1 value=runcommands>Run Command Logs</option>
-                                    <option notransval=1 value=batchupload>Batch Upload Logs</option>
-                                    <option notransval=1 value=changenode>Change Node Logs</option>
-                                    <option notransval=1 value=removenode>Remove Node Logs</option>
+                                <input id="p15consoleText" class="form-control card flex-grow-1"
+                                    onkeyup="p15consoleSend(event)" onfocus="onConsoleFocus(1)"
+                                    onblur="onConsoleFocus(0)" />
+                                <span class="mx-1"></span>
+                                <select id="p15outputselect" style="display: none;" onchange="setupConsole()">
+                                    <option id="p15outputselect1" value="1">Agent</option>
+                                    <option id="p15outputselect3" value="3">Push</option>
+                                    <option id="p15outputselect2" value="2">MQTT</option>
                                 </select>
-                                <label class="me-1" for="p16limitdropdown">Show</label>
-                                <select id=p16limitdropdown class="form-control-sm me-2" onchange=refreshDeviceEvents()>
-                                    <option notransval=1 value=60>Last 60</option>
-                                    <option notransval=1 value=120>Last 120</option>
-                                    <option notransval=1 value=250>Last 250</option>
-                                    <option notransval=1 value=500>Last 500</option>
-                                    <option notransval=1 value=1000>Last 1000</option>
-                                </select>
-                                <i onclick=p3showDownloadEventsDialog(1) class="fa-solid fa-download"
-                                    title="Download Events" style=cursor:pointer></i>
+                                <button id="id_p15consoleClear" type="button" class="btn btn-primary " value="Clear"
+                                    onclick="p15consoleClear()">
+                                    <span>Clear</span>
+                                </button>
                             </div>
-                        </td>
-                    </tr>
-                </table>
-                <div id=p16events></div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
 
-            <div id=p17 style="display:none;">
-                <div id="p17title" class="d-flex align-items-center">
-                    <div id="p17BackButton" class="pe-2">
-                        <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack()
-                            title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
-                    </div>
-                    <div class='fs-4 fw-bold'>Details - <span id=p17deviceName></span></div>
-                    <div id="devListToolbarViewIcons3" class="ms-auto">
-                        <i class="fa-solid fa-chart-line fa-xl fa-border" role="button"
-                            onclick=deskToggleCpuGraph(event) title="Show device CPU and memory usage."></i>
-                    </div>
+            {{!-- device events --}}
+            <div id="p16" style="display:none" class="device-details-container">
+                <div id="p16title" class="device-header d-flex align-items-center mb-4">
+                    <button id="p10BackButton" class="btn btn-icon me-3" onclick="goBack()" title="Back">
+                        <i class="fas fa-arrow-left fa-xl"></i>
+                    </button>
+                    <h3 class='m-0 '>Device Events - <span id="p16deviceName" class="text-primary"></span>
+                    </h3>
                 </div>
-                <div id=p17info class="ps-0 pb-5 overflow-y-auto container-fluid">
-                    <div id=p17graph style="width:100%">
-                        <table style=width:100%>
-                            <tr>
-                                <td style=width:64px;vertical-align:top>
-                                    <img src=images/details/graph64.png border=0 width=64 />
-                                </td>
-                                <td>
-                                    <div class=DevSt style=margin-bottom:3px;margin-left:16px><b>Live Graph</b></div>
-                                    <div
-                                        style="margin-bottom:10px;margin-left:16px;height:240px;width:calc(100% - 16px);position:relative">
-                                        <canvas id=deviceDetailsStats
-                                            style="position:absolute;top:0;left:0;right:0;bottom:0"></canvas>
-                                    </div>
-                                    <div id="extraGraphValues" style="display:none;margin-left:30px;margin-bottom:15px">
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body p-3">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+                            <!-- Filter by + Show on same side -->
+                            <div class="d-flex align-items-center flex-wrap gap-3">
+                                <!-- Filter by -->
+                                <div class="d-flex align-items-center">
+                                    <label class="me-2 text-muted small" for="p16filterevents">Filter by:</label>
+                                    <select id="p16filterevents" class="form-select form-select-sm"
+                                        style="width: 160px;" onchange="refreshDeviceEvents()">
+                                        <option notransval="1" value="">All Logs</option>
+                                        <option notransval="1" value="agentlog">Agent Logs</option>
+                                        <option notransval="1" value="relaylog">Relay Logs</option>
+                                        <option notransval="1" value="manual">Manual Logs</option>
+                                        <option notransval="1" value="runcommands">Run Command Logs</option>
+                                        <option notransval="1" value="batchupload">Batch Upload Logs</option>
+                                        <option notransval="1" value="changenode">Change Node Logs</option>
+                                        <option notransval="1" value="removenode">Remove Node Logs</option>
+                                    </select>
+                                </div>
+
+                                <!-- Show -->
+                                <div class="d-flex align-items-center">
+                                    <label class="me-2 text-muted small" for="p16limitdropdown">Show:</label>
+                                    <select id="p16limitdropdown" class="form-select form-select-sm"
+                                        style="width: 120px;" onchange="refreshDeviceEvents()">
+                                        <option notransval="1" value="60">Last 60</option>
+                                        <option notransval="1" value="120">Last 120</option>
+                                        <option notransval="1" value="250">Last 250</option>
+                                        <option notransval="1" value="500">Last 500</option>
+                                        <option notransval="1" value="1000">Last 1000</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Export Button -->
+                            <button onclick="p3showDownloadEventsDialog(1)" class="btn btn-sm btn-outline-primary"
+                                title="Download Events">
+                                <i class="fas fa-download me-1"></i> Export
+                            </button>
+                        </div>
+                        <div class="events-container mt-3">
+                            <div id="p16events" class="modern-table-container">
+                                <!-- Events will be loaded here -->
+                            </div>
+                        </div>
                     </div>
-                    <div id=p17info2></div>
                 </div>
             </div>
+
+
+
+            {{!-- device details --}}
+            <div id="p17" style="display:none;" class="device-details-container">
+                <!-- Header Section -->
+                <div class="device-header d-flex align-items-center justify-content-between mb-4">
+                    <div class="d-flex align-items-center">
+                        <button id="p10BackButton" class="btn btn-icon me-3" onclick="goBack()" title="Back">
+                            <i class="fas fa-arrow-left fa-xl"></i>
+                        </button>
+                        <h3 class="m-0">Details - <span id="p17deviceName" class="text-primary fw-semibold"></span></h3>
+                    </div>
+                    <button id="devListToolbarViewIcons3" class="btn btn-icon" onclick="deskToggleCpuGraph(event)"
+                        title="Show device CPU and memory usage" data-bs-toggle="tooltip">
+                        <i class="fas fa-chart-line"></i>
+                    </button>
+                </div>
+
+                <!-- Main Content Area -->
+                <div id="p17info" class="card device-details-content p-3">
+                    <!-- Graph Section -->
+                    <div id="p17graph" class="graph-container mb-4">
+                        <div class="d-flex">
+                            <div class="graph-icon me-4">
+                                <img src="images/details/graph64.png" alt="Graph icon" class="img-fluid" width="64">
+                            </div>
+                            <div class="graph-content flex-grow-1">
+                                <h5 class="graph-title mb-3">Live Graph</h5>
+                                <div class="graph-wrapper position-relative" style="height: 240px;">
+                                    <canvas id="deviceDetailsStats" class="graph-canvas"></canvas>
+                                </div>
+                                <div id="extraGraphValues" class="graph-values mt-3" style="display:none"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Info Section -->
+                    <div id="p17info2" class="additional-info"></div>
+                </div>
+            </div>
+
+
 
             <div id=p19 style="display:none">
                 <div id="p19title">
@@ -3550,17 +3764,17 @@
             QS('p2info')['max-height'] = 'calc(100vh - ' + (20 + xh + xh2) + 'px)';
             QS('p3users')['max-height'] = 'calc(100vh - ' + (50 + xh) + 'px)'; // 124
             QS('p50groups')['max-height'] = 'calc(100vh - ' + (50 + xh) + 'px)'; // 124
-            QS('p3events')['height'] = 'calc(100vh - ' + (50 + xh) + 'px)'; // 124
+            QS('p3events')['height'] = 'calc(90vh - ' + (50 + xh) + 'px)'; // 124
             QS('p5filetable')['height'] = 'calc(100vh - ' + (99 + xh) + 'px)'; // 160
-            QS('p13filetable')['height'] = 'calc(100vh - ' + (127 + xh + xh2) + 'px)'; // 124
+            QS('p13filetable')['height'] = 'calc(80vh - ' + (127 + xh + xh2) + 'px)'; // 124
             QS('serverMainStats')['height'] = 'calc(100vh - ' + (50 + xh + xh2) + 'px)'; // 110
             QS('serverMainStats')['max-height'] = 'calc(100vh - ' + (50 + xh + xh2) + 'px)'; // 110
             QS('xdevices')['max-height'] = 'calc(100vh - ' + (46 + xh) + 'px)'; // 124
             QS('xdevicesmap')['max-height'] = 'calc(100vh - ' + (46 + xh) + 'px)'; // 124
-            QS('p15agentConsole')['height'] = 'calc(100vh - ' + (84 + xh + xh2) + 'px)';
-            QS('p15agentConsole')['max-height'] = 'calc(100vh - ' + (84 + xh + xh2) + 'px)';
-            QS('p15agentConsoleText')['height'] = 'calc(100vh - ' + (81 + xh + xh2) + 'px)';
-            QS('p15agentConsoleText')['max-height'] = 'calc(100vh - ' + (81 + xh + xh2) + 'px)';
+            //QS('p15agentConsole')['height'] = 'calc(100vh - ' + (84 + xh + xh2) + 'px)';
+            //QS('p15agentConsole')['max-height'] = 'calc(100vh - ' + (84 + xh + xh2) + 'px)';
+            //QS('p15agentConsoleText')['height'] = 'calc(100vh - ' + (81 + xh + xh2) + 'px)';
+            //QS('p15agentConsoleText')['max-height'] = 'calc(100vh - ' + (81 + xh + xh2) + 'px)';
             var xtermActive = !((args.xterm === 0) || ((terminal != null) && (xterm == null)));
             if (fullscreen) {
                 QS('deskarea3x')['height'] = null;
@@ -3568,19 +3782,19 @@
                 QS('p14iframe')['height'] = null;
                 QS('p14iframe')['max-height'] = null;
                 if (xtermActive) {
-                    QS('termarea3x')['height'] = 'calc(100vh - 55px)';
-                    QS('termarea3xdiv')['height'] = 'calc(100vh - 55px)';
-                    QS('termarea3x')['max-width'] = 'calc(1px)';
+                    QS('termarea3x')['height'] = 'calc(90vh - 55px)';
+                    QS('termarea3xdiv')['height'] = 'calc(90vh - 55px)';
+                    //QS('termarea3x')['max-width'] = 'calc(1px)';
                 }
             } else {
-                QS('deskarea3x')['height'] = 'calc(100vh - ' + (74 + xh + xh2) + 'px)';
-                QS('deskarea3x')['max-height'] = 'calc(100vh - ' + (74 + xh + xh2) + 'px)';
+                QS('deskarea3x')['height'] = 'calc(95vh - ' + (74 + xh + xh2) + 'px)';
+                QS('deskarea3x')['max-height'] = 'calc(95vh - ' + (74 + xh + xh2) + 'px)';
                 QS('p14iframe')['height'] = 'calc(100vh - ' + (23 + xh + xh2) + 'px)';
                 QS('p14iframe')['max-height'] = 'calc(100vh - ' + (23 + xh + xh2) + 'px)';
                 if (xtermActive) {
-                    QS('termarea3x')['height'] = 'calc(100vh - ' + (74 + xh + xh2) + 'px)';
-                    QS('termarea3xdiv')['height'] = 'calc(100vh - ' + (74 + xh + xh2) + 'px)';
-                    QS('termarea3x')['max-width'] = 'calc(1px)';
+                    QS('termarea3x')['height'] = 'calc(90vh - ' + (74 + xh + xh2) + 'px)';
+                    QS('termarea3xdiv')['height'] = 'calc(90vh - ' + (74 + xh + xh2) + 'px)';
+                    //QS('termarea3x')['max-width'] = 'calc(1px)';
                 }
             }
             QS('p43iframe')['height'] = 'calc(100vh - ' + (84 + xh) + 'px)';
@@ -3589,8 +3803,8 @@
             QS('p6info')['max-height'] = 'calc(100vh - ' + (-50 + xh + xh2) + 'px)';
             QS('p10info')['height'] = 'calc(100vh - ' + (20 + xh + xh2) + 'px)';
             QS('p10info')['max-height'] = 'calc(100vh - ' + (20 + xh + xh2) + 'px)';
-            QS('p17info')['height'] = 'calc(100vh - ' + (20 + xh + xh2) + 'px)';
-            QS('p17info')['max-height'] = 'calc(100vh - ' + (20 + xh + xh2) + 'px)';
+            QS('p17info')['height'] = 'calc(95vh - ' + (20 + xh + xh2) + 'px)';
+            QS('p17info')['max-height'] = 'calc(95vh - ' + (20 + xh + xh2) + 'px)';
             QS('p20main')['height'] = 'calc(100vh - ' + (-50 + xh + xh2) + 'px)';
             QS('p20main')['max-height'] = 'calc(100vh - ' + (-50 + xh + xh2) + 'px)';
             QS('p21main')['height'] = 'calc(100vh - ' + (20 + xh + xh2) + 'px)';
@@ -3599,8 +3813,8 @@
             QS('p30info')['max-height'] = 'calc(100vh - ' + (20 + xh + xh2) + 'px)';
             QS('p51info')['height'] = 'calc(100vh - ' + (20 + xh + xh2) + 'px)';
             QS('p51info')['max-height'] = 'calc(100vh - ' + (20 + xh + xh2) + 'px)';
-            QS('p16events')['height'] = 'calc(100vh - ' + (50 + xh + xh2) + 'px)';
-            QS('p16events')['max-height'] = 'calc(100vh - ' + (50 + xh + xh2) + 'px)';
+            QS('p16events')['height'] = 'calc(90vh - ' + (50 + xh + xh2) + 'px)';
+            QS('p16events')['max-height'] = 'calc(90vh - ' + (50 + xh + xh2) + 'px)';
             QS('p31events')['height'] = 'calc(100vh - ' + (50 + xh + xh2) + 'px)';
             QS('p31events')['max-height'] = 'calc(100vh - ' + (50 + xh + xh2) + 'px)';
             QS('p41events')['height'] = 'calc(100vh - ' + (48 + xh + xh2) + 'px)';
@@ -6224,11 +6438,11 @@
                                 ((userinfo.siteadmin == 0xFFFFFFFF) || ((userinfo.siteadmin & 4096) == 0));
                             const groupInfo = groupTypeMessages[mesh.mtype] || groupTypeMessages[2];
 
-                            // devises cards
+                            // devices cards
 
                             r += `
-                            <div class="device-group-card mb-3 border rounded">
-                            <div class="device-group-header p-3 d-flex align-items-center bg-light rounded-top cursor-pointer"
+                            <div class="mb-3 card ">
+                            <div class="p-3 d-flex align-items-center bg-light rounded-top cursor-pointer"
                                 onclick="toggleCollapseGroup('${deviceHeaderId2}','${mesh._id}')">
                                 <div class="toggle-icon me-3">
                                 <i class="fas fa-fw fa-chevron-${isCollapsed ? 'right' : 'down'} transition-all"></i>
@@ -6255,6 +6469,7 @@
                             </div>
                             </div>
                             `;
+
 
                             // End collapsing area
 
@@ -6520,7 +6735,37 @@
             if (((!node.conn) || (node.conn == 0)) && (node.mtype != 3)) { icon += ' gray'; }
 
             if (view == 1) {
-                div.innerHTML = '<table id=devs cmenu=devsContentMenu onmouseover=devMouseHover(this,1) onmouseout=devMouseHover(this,0) style=width:100%;height:100%><tr><td style=width:22px><input class="' + node.meshid + ' DeviceCheckbox form-check-input me-2" onchange=p1devcheck(event) value=devid_' + node._id + ' type=checkbox ' + (checkedNodeids[node._id] ? ' checked' : '') + '></td><td><table onmouseup=gotoDevice(\'' + node._id + '\',null,null,event) border=0 cellspacing=0 style=width:100%;height:100%;cursor:pointer><tr><td style=width:50px tabindex=0 onkeypress="if (event.key==\'Enter\') gotoDevice(\'' + node._id + '\',null,null,event)"><div class="i' + icon + '" style=width:50px></div></td><td class=g1t></td><td class=e2t><div class=e1t style=width:' + ((div.clientWidth) - 120) + 'px title="' + title + '">' + name + '</div><div>' + NodeStateStr(node) + '</div></td><td class=g2t></td></tr></table></td></tr></table>' + devNotify;
+                div.innerHTML = `
+                                <div id="devs" class="card device-card mb-40" cmenu="devsContentMenu">
+                                <div class="card-body p-3 d-flex align-items-center">
+                                    <div class="me-3">
+                                    <input class="${node.meshid} DeviceCheckbox form-check-input" 
+                                            onchange="p1devcheck(event)"
+                                            value="devid_${node._id}"
+                                            type="checkbox"
+                                            ${checkedNodeids[node._id] ? ' checked' : ''}>
+                                    </div>
+                                    <div class="d-flex flex-grow-1 align-items-center device-clickable-area"
+                                        onclick="gotoDevice('${node._id}',null,null,event)"
+                                        onkeypress="if (event.key=='Enter') gotoDevice('${node._id}',null,null,event)"
+                                        tabindex="0">
+                                    <div class="device-icon me-3">
+                                        <div class="i${icon}" style="width:50px"></div>
+                                    </div>
+                                    <div class="device-content flex-grow-1">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                        <div class="device-name text-truncate" style="max-width:${div.clientWidth - 120}px" title="${title}">
+                                            ${name}
+                                        </div>
+                                        </div>
+                                        <div class="device-status">
+                                        ${NodeStateStr(node)}
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                                ${devNotify}`;
             } else if (view == 2) {
                 var states = [];
                 if (node.conn) {
@@ -9373,7 +9618,7 @@
                 // Add node name
                 var nname = EscapeHtml(node.name), nnameEx;
                 if (nname.length == 0) { nname = '<i>' + "None" + '</i>'; }
-                if (((meshrights & 4) != 0) && ((!mesh.flags) || ((mesh.flags & 2) == 0 || (mesh.flags & 16)))) { nname = '<span tabindex=0 title="' + "Click here to edit the server-side device name" + '" onclick=showEditNodeValueDialog(0) onkeyup="if (event.key == \'Enter\') showEditNodeValueDialog(0)" role="button">' + nname + ' <i class="fa-solid fa-pencil fa-2xs"/></i></span>'; }
+                if (((meshrights & 4) != 0) && ((!mesh.flags) || ((mesh.flags & 2) == 0 || (mesh.flags & 16)))) { nname = '<span tabindex=0 class=text-primary title="' + "Click here to edit the server-side device name" + '" onclick=showEditNodeValueDialog(0) onkeyup="if (event.key == \'Enter\') showEditNodeValueDialog(0)" role="button">' + nname + ' <i class="fa-solid fa-pencil fa-2xs"/></i></span>'; }
                 nnameEx = nname;
                 if (mesh) { nname += '<span style=color:#AAA;font-size:small> - ' + EscapeHtml(mesh.name) + '</span>'; }
                 QH('p10deviceName', nname);
@@ -9381,7 +9626,7 @@
                 QH('p12deviceName', nname);
                 QH('p13deviceName', nname);
                 QH('p14deviceName', nname);
-                QH('p15deviceName', "Console - " + nname);
+                QH('p15deviceName', nname);
                 QH('p16deviceName', nname);
                 QH('p17deviceName', nname);
                 QH('p19deviceName', nname);
@@ -13988,9 +14233,9 @@
                     if (printDate(time) != dateHeader) {
                         if (dateHeader != null) x += '</table>';
                         dateHeader = printDate(time);
-                        x += '<table class="table p3eventsTable" cellpadding=0 cellspacing=0><tr><td colspan=4 class=DevSt>' + dateHeader + '</td></tr>';
+                        x += '<table class="" cellpadding=0 cellspacing=0><tr><td colspan=4 class=DevSt>' + dateHeader + '</td></tr>';
                     }
-                    var icon = 'fa-mobile-screen';
+                    var icon = 'fa-mobile-screen text-primary';
                     if (event.etype == 'user') icon = 'fa-user';
                     if (event.etype == 'server') icon = 'fa-server';
 
@@ -14017,7 +14262,7 @@
                         }
                     }
                     if (event.etype == 'relay' || event.action == 'relaylog') icon = 'fa-arrow-right-arrow-left';
-                    x += '<tr onclick=showEventDetails(' + event.h + ',1) onmouseover=eventMouseHover(this,1) onmouseout=eventMouseHover(this,0) role="button"><td style=width:18px><i class="fa-solid ' + icon + '"></i></td><td class=g1>&nbsp;</td><td class=style10>' + printTime(time) + ' - ' + msg + '</td></tr><tr></tr>';
+                    x += '<tr onclick=showEventDetails(' + event.h + ',1)  role="button"><td style=width:18px><i class="fa-solid ' + icon + '"></i></td><td >&nbsp;</td><td>' + printTime(time) + ' - ' + msg + '</td></tr><tr></tr>';
                 }
             }
             if (dateHeader != null) x += '</table>';
@@ -17800,7 +18045,7 @@
                     }
                     if (event.remoteaddr) { msg += ' (' + event.remoteaddr + ')'; }
                     if (event.etype == 'relay' || event.action == 'relaylog') icon = 'fa-arrow-right-arrow-left';
-                    x += '<tr onclick=showEventDetails(' + event.h + ',2)  onmouseout=eventMouseHover(this,0) role=button><td style=width:18px><i class="fa-fw fa-solid ' + icon + '"></i></td><td >&nbsp;</td><td>' + printTime(time) + ' - ' + msg + '</td></tr><tr></tr>';
+                    x += '<tr onclick=showEventDetails(' + event.h + ',2) role=button><td style=width:18px><i class="fa-fw fa-solid ' + icon + '"></i></td><td >&nbsp;</td><td>' + printTime(time) + ' - ' + msg + '</td></tr><tr></tr>';
                 }
             }
             if (dateHeader != null) x += '</table>';
