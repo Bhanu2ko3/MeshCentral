@@ -1,0 +1,9 @@
+{"time":{"$$date":1755151256666},"nodeid":"*","power":0,"s":1,"_id":"4ddzjWDNXIPPnFqK"}
+{"time":{"$$date":1755058717819},"nodeid":"*","power":0,"s":1,"_id":"dM9Kk8erAU81xtW7"}
+{"time":{"$$date":1755058702947},"nodeid":"*","power":0,"s":1,"_id":"gFTaAKoZpDWLFb3x"}
+{"$$indexCreated":{"fieldName":"nodeid","unique":false,"sparse":false}}
+{"$$indexCreated":{"fieldName":"time","unique":false,"sparse":false}}
+{"$$indexCreated":{"fieldName":"nodeid"}}
+{"time":{"$$date":1755151279722},"nodeid":"*","power":0,"s":1,"_id":"UXtLOAjTSXGHySPo"}
+{"$$indexCreated":{"fieldName":"time","expireAfterSeconds":864000}}
+{"time":{"$$date":1755153889492},"nodeid":"node//B6uJO5R4tKfVAj@PBUx9UKI$Y9qIfCjWQKr79QFK0RQhVhUn55bz6RR$qD0t7XvI","power":1,"_id":"RkKtKRQxd3IcD5BO"}

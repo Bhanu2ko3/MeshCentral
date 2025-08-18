@@ -435,18 +435,18 @@
             </div>
 
 
-            {{!-- My Devices --}}
+            {{!-- my devices --}}
             <div id=p1 style="display:none">
-                <div class="container-fluid p-4">
+                <div class="device-details-container">
                     <!-- Header Section -->
                     <div id="p1title" class="mb-4">
 
                         <!-- View Icons -->
-                        <div id="devListToolbarViewIcons" class="btn-group" style="display:none">
+                        <div id="devListToolbarViewIcons" class="btn-group " style="display:none">
                             <button id="devViewPageButton1" class="btn btn-sm btn-outline-secondary"
                                 onclick="onDeviceViewPageChange(1)"
                                 onkeypress="if (event.key == 'Enter') { onDeviceViewPageChange(1); }"
-                                title="Go to first page" style="display:none">
+                                title="Go to first page" style="display:none;">
                                 <i class="fas fa-angle-double-left"></i>
                             </button>
                             <button id="devViewPageButton2" class="btn btn-sm btn-outline-secondary"
@@ -500,7 +500,7 @@
                         </div>
                         <!-- Header -->
                         <div id="p2title" class="mb-4">
-                            <h1 class="display-6 fw-bold">My Devices</h1>
+                            <h2 class="">My Devices</h2>
                             <hr class="my-2">
                         </div>
                     </div>
@@ -714,8 +714,7 @@
 
 
                     <!-- Devices Container -->
-                    <div id="xdevices" class="" style=" overflow: auto; height: 500px;"
-                        onscroll="onDevicesScroll(false)">
+                    <div id="xdevices" class="" style=" overflow: auto; ;" onscroll="onDevicesScroll(false)">
 
                         <!-- Devices will be loaded here -->
                     </div>
@@ -743,10 +742,10 @@
 
             {{!-- my account --}}
             <div id="p2" style="display:none;">
-                <div class="container-fluid p-4 ">
+                <div class="device-details-container">
                     <!-- Header -->
                     <div id="p2title" class="mb-4">
-                        <h1 class="display-6 fw-bold">My Account</h1>
+                        <h2 class="">My Account</h2>
                         <hr class="my-2">
                     </div>
                     <div style="max-height: 700px; overflow-y: auto; overflow-x: hidden; ">
@@ -1041,11 +1040,11 @@
             </div>
 
 
-            <!--My Events -->
+            <!--my events -->
             <div id="p3" style="display:none;">
-                <div class="container-fluid p-4">
+                <div class="device-details-container ">
                     <div id="p3title" class="mb-4">
-                        <h1 class="display-6 fw-bold">My Events</h1>
+                        <h2 class="">My Events</h2>
                         <hr class="my-2">
                     </div>
 
@@ -1095,18 +1094,15 @@
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
 
-            {{!-- User Management --}}
+            {{!-- user management --}}
             <div id="p4" style="display:none">
-                <div class="container-fluid p-4">
+                <div class="device-details-container">
                     <!-- Header -->
                     <div id="p4title" class="mb-4">
-                        <h1 class="display-6 fw-bold">User Management</h1>
+                        <h2 class="">User Management</h2>
                         <hr class="my-2">
                     </div>
 
@@ -1174,10 +1170,10 @@
 
             {{!-- my files --}}
             <div id="p5" style="display:none">
-                <div class="container-fluid p-4">
+                <div class="device-details-container">
                     <!-- Header -->
                     <div id="p5title" class="mb-4">
-                        <h1 class="display-6 fw-bold">My Files</h1>
+                        <h2 class="">My Files</h2>
                         <hr class="my-2">
                     </div>
 
@@ -1299,12 +1295,12 @@
                 </div>
             </div>
 
-            {{!-- Server Management --}}
+            {{!-- server management --}}
             <div id="p6" style="display:none">
-                <div class="container-fluid p-4">
+                <div class="device-details-container">
                     <!-- Header -->
                     <div id="p6title" class="mb-4">
-                        <h1 class="display-6 fw-bold">Server Management</h1>
+                        <h2 class="">Server Management</h2>
                         <hr class="my-2">
                     </div>
 
@@ -1578,95 +1574,149 @@
                         style="display:inline-block;margin-left:1px;border-radius:5px;background-color:#A3FFB8;padding:2px">
                         NUM</div>
                 </div>
-                <div id=deskarea0 cellpadding=0 cellspacing=0>
-                    <div id=deskarea1 class="areaHead d-flex flex-wrap">
-                        <div class="d-flex align-items-center">
-                            <input type="button" class="btn btn-primary btn-sm me-1" id="autoconnectbutton1"
-                                value="AutoConnect" onclick=autoConnectDesktop(event) onkeypress="return false"
-                                onkeydown="return false" style="display:none;margin-right:4px" />
-                            <div class="btn-group dropdown-center me-1" id=connectbutton1span>
-                                <button type="button" class="btn btn btn-primary btn-sm" id=connectbutton1
-                                    title="Connect using MeshAgent remote desktop" onclick=connectDesktop(event,3)
-                                    onkeypress="return false" onkeydown="return false"
-                                    disabled="disabled">Connect</button>
-                                <button type="button"
-                                    class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
-                                    id=connectbutton1d data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="visually-hidden">Toggle Dropdown</span>
+                <div id=deskarea0 class="card shadow-sm">
+                    <div id="deskarea1"
+                        class="card-header bg-light d-flex align-items-center justify-content-between py-2">
+                        <!-- Left Side Controls -->
+                        <div class="d-flex align-items-center flex-wrap gap-2">
+                            <!-- AutoConnect Button -->
+                            <button type="button" class="btn btn-success btn-sm" id="autoconnectbutton1"
+                                onclick="autoConnectDesktop(event)" onkeypress="return false" onkeydown="return false"
+                                style="display:none">
+                                <i class="fas fa-play me-1"></i> AutoConnect
+                            </button>
+
+                            <!-- Main Connect Dropdown -->
+                            <div class="btn-group" id="connectbutton1span">
+                                <button type="button" class="btn btn-primary btn-sm" id="connectbutton1"
+                                    title="Connect using MeshAgent remote desktop" onclick="connectDesktop(event,3)"
+                                    onkeypress="return false" onkeydown="return false" disabled>
+                                    <i class="fas fa-desktop me-1"></i> Connect
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" onclick="cmdeskaction(1,event)">Ask Consent + Bar</a>
-                                    </li>
-                                    <li><a class="dropdown-item" onclick="cmdeskaction(2,event)">Ask Consent</a></li>
-                                    <li><a class="dropdown-item" onclick="cmdeskaction(3,event)">Privacy Bar</a></li>
-                                </ul>
-                            </div>
-                            <div class="btn-group dropdown-center me-1" id=connectbutton1rspan>
-                                <button type="button" class="btn btn btn-primary btn-sm" id=connectbutton1r
-                                    title="Connect using RDP" onclick=askRdpCredentials() onkeypress="return false"
-                                    onkeydown="return false" disabled="disabled">RDP Connect</button>
                                 <button type="button"
                                     class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
-                                    id=connectbutton1rd data-bs-toggle="dropdown" aria-expanded="false"><span
-                                        class="visually-hidden">Toggle Dropdown</span></button>
+                                    id="connectbutton1d" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" onclick="cmaltportaction(1,event)">Alternate Port</a>
-                                    </li>
+                                    <li><a class="dropdown-item" onclick="cmdeskaction(1,event)">
+                                            <i class="fas fa-user-shield me-2"></i>Ask Consent + Bar</a></li>
+                                    <li><a class="dropdown-item" onclick="cmdeskaction(2,event)">
+                                            <i class="fas fa-question-circle me-2"></i>Ask Consent</a></li>
+                                    <li><a class="dropdown-item" onclick="cmdeskaction(3,event)">
+                                            <i class="fas fa-eye-slash me-2"></i>Privacy Bar</a></li>
                                 </ul>
                             </div>
-                            <span id=connectbutton1hspan><button class="btn btn-primary btn-sm me-1" type=button
-                                    id=connectbutton1h title="Connect using hardware KVM"
-                                    onclick=connectDesktop(event,2) onkeypress="return false" onkeydown="return false"
-                                    disabled="disabled">HW
-                                    Connect</button></span>
-                            <div class="btn-group dropdown-center me-1" id=disconnectbutton1span>
-                                <button type="button" class="btn btn btn-primary btn-sm" id=disconnectbutton1
-                                    title="Connect using MeshAgent remote desktop" onclick=connectDesktop(event,0)
-                                    onkeypress="return false" onkeydown="return false">Disconnect</button>
-                                <button type="button"
-                                    class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
-                                    id=diconnectbutton1d data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="visually-hidden">Toggle Dropdown</span>
+
+                            <!-- RDP Connect Dropdown -->
+                            <div class="btn-group" id="connectbutton1rspan">
+                                <button type="button" class="btn btn-primary btn-sm" id="connectbutton1r"
+                                    title="Connect using RDP" onclick="askRdpCredentials()" onkeypress="return false"
+                                    onkeydown="return false" disabled>
+                                    <i class="fab fa-windows me-1"></i> RDP
                                 </button>
+                                <button type="button"
+                                    class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
+                                    id="connectbutton1rd" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" onclick="cmdeskaction(10,event)">Disconnect and
-                                            Lock</a></li>
-                                    <li><a class="dropdown-item" onclick="cmdeskaction(11,event)">Disconnect</a></li>
+                                    <li><a class="dropdown-item" onclick="cmaltportaction(1,event)">
+                                            <i class="fas fa-exchange-alt me-2"></i>Alternate Port</a></li>
                                 </ul>
                             </div>
-                            <span id="deskstatus" style="line-height:22px">Disconnected</span><span
-                                id="deskmetadata"></span>
+
+                            <!-- Hardware Connect -->
+                            <span id="connectbutton1hspan">
+                                <button class="btn btn-primary btn-sm" type="button" id="connectbutton1h"
+                                    title="Connect using hardware KVM" onclick="connectDesktop(event,2)"
+                                    onkeypress="return false" onkeydown="return false" disabled>
+                                    <i class="fas fa-microchip me-1"></i> HW Connect
+                                </button>
+                            </span>
+
+                            <!-- Disconnect Dropdown -->
+                            <div class="btn-group" id="disconnectbutton1span">
+                                <button type="button" class="btn btn-danger btn-sm" id="disconnectbutton1"
+                                    title="Disconnect remote desktop" onclick="connectDesktop(event,0)"
+                                    onkeypress="return false" onkeydown="return false">
+                                    <i class="fas fa-power-off me-1"></i> Disconnect
+                                </button>
+                                <button type="button"
+                                    class="btn btn-danger btn-sm dropdown-toggle dropdown-toggle-split"
+                                    id="diconnectbutton1d" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" onclick="cmdeskaction(10,event)">
+                                            <i class="fas fa-lock me-2"></i>Disconnect and Lock</a></li>
+                                    <li><a class="dropdown-item" onclick="cmdeskaction(11,event)">
+                                            <i class="fas fa-plug me-2"></i>Disconnect</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Status Indicators -->
+                            <span id="deskstatus" class="badge bg-secondary ms-2">
+                                <i class=""></i> Disconnected
+                            </span>
+                            <span id="deskmetadata" class="text-muted small ms-2"></span>
                         </div>
-                        <div class="d-flex align-items-center ms-auto">
-                            <div id="desktopCustomUiButtons" style="float:left"></div>
-                            <div id="desktopCustomUpperRight" style="float:left;margin-right:6px"></div>
-                            <input type="button" class="btn btn-primary btn-sm"
-                                title="Change the power state of the remote machine" onkeypress="return false"
-                                onkeydown="return false" value="Power Actions..." onclick="showPowerActionDlg()"
-                                style="display:none" />
-                            <input id="deskActionsBtn" type=button class="btn btn-primary btn-sm me-1"
-                                title="Perform power actions on the device" onkeypress="return false"
-                                onkeydown="return false" value=Actions onclick=deviceActionFunction() class="mR" />
-                            <input id="deskActionsSettings" type="button" class="btn btn-primary btn-sm me-1"
-                                value="Settings" title="Edit remote desktop settings" onkeypress="return false"
-                                onkeydown="return false" onclick="showDesktopSettings()" class="mR" />
-                            <input id="deskFocusBtn" type="button"
+
+                        <!-- Right Side Controls -->
+                        <div class="d-flex align-items-center gap-2">
+                            <div id="desktopCustomUiButtons"></div>
+                            <div id="desktopCustomUpperRight"></div>
+
+                            <!-- Power Actions -->
+                            <button type="button" class="btn btn-outline-primary btn-sm"
+                                title="Change the power state of the remote machine" onclick="showPowerActionDlg()"
+                                style="display:none">
+                                <i class="fas fa-bolt me-1"></i> Power
+                            </button>
+
+                            <!-- Main Actions -->
+                            <button id="deskActionsBtn" type="button" class="btn btn-outline-primary btn-sm"
+                                title="Perform power actions on the device" onclick="deviceActionFunction()">
+                                <i class="fas fa-bolt me-1"></i> Actions
+                            </button>
+
+                            <!-- Settings Button -->
+                            <button id="deskActionsSettings" type="button" class="btn btn-outline-secondary btn-sm"
+                                title="Edit remote desktop settings" onclick="showDesktopSettings()">
+                                <i class="fas fa-sliders-h me-1"></i> Settings
+                            </button>
+
+                            <!-- Focus Mode -->
+                            <button id="deskFocusBtn" type="button" class="btn btn-outline-secondary btn-sm"
                                 title="Toggle focus mode, when active only the region around the mouse is updated"
-                                onkeypress="return false" onkeydown="return false" value="Focus All"
-                                onclick="deskToggleFocus()" style="margin-right:3px;display:none" />
-                            <div id="deskRecordIcon" class='deskareaicon' title="Server is recording this session"
-                                style="display:none;background-color:red;width:12px;height:12px;border-radius:6px;margin-top:5px">
+                                onclick="deskToggleFocus()" style="display:none">
+                                <i class="fas fa-bullseye me-1"></i> Focus
+                            </button>
+
+                            <!-- Recording Indicator -->
+                            <div id="deskRecordIcon" class="badge bg-danger" title="Server is recording this session"
+                                style="display:none">
+                                <i class="fas fa-circle-record me-1"></i> Recording
                             </div>
-                            <div class='deskareaicon' title="Rotate Right" onclick="drotate(1)"><i
-                                    class="fa-solid fa-rotate-right"></i></div>
-                            <div class='deskareaicon' title="Rotate Left" onclick="drotate(-1)"><i
-                                    class="fa-solid fa-rotate-left"></i></div>
-                            <div class='deskareaicon' title="Toggle View Mode" onclick="toggleAspectRatio(1)">&#8690;
+
+                            <!-- View Controls -->
+                            <div class="btn-group">
+                                <button class="btn btn-outline-secondary btn-sm" title="Rotate Right"
+                                    onclick="drotate(1)">
+                                    <i class="fas fa-rotate-right"></i>
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm" title="Rotate Left"
+                                    onclick="drotate(-1)">
+                                    <i class="fas fa-rotate-left"></i>
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm" title="Toggle View Mode"
+                                    onclick="toggleAspectRatio(1)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
                             </div>
-                            <div id="idx_deskFullBtn2" onclick=deskToggleFull(event) style="float:right">&nbsp;&#x2716;
-                            </div>
+
+                            <!-- Fullscreen Toggle -->
+                            <button id="idx_deskFullBtn2" class="btn btn-outline-secondary btn-sm"
+                                onclick="deskToggleFull(event)">
+                                <i class="fas fa-maximize"></i>
+                            </button>
                         </div>
                     </div>
+
                     {{!-- streming area --}}
                     <div id=deskarea3x>
                         <div id="p11bigok" style="display:none"><b>&checkmark;</b></div>
@@ -1714,88 +1764,181 @@
                     </div>
 
                     {{!-- footer area --}}
-                    <div id=deskarea4 class="areaFoot d-flex flex-wrap">
-                        <div class="d-flex align-items-center">
-                            <select id="deskkeys" class="form-select-sm me-1" cmenu=deskKeyShortcutContextMenu></select>
-                            <input id="DeskWD" type=button class="btn btn-primary btn-sm me-1" value="Send"
-                                onkeypress="return false" onkeydown="return false" onclick="deskSendKeys()" />
-                            <input id="DeskESC" style="display:none" type="button" class="btn btn-primary btn-sm me-1"
-                                value="ESC" onkeypress="return false" onkeydown="return false"
-                                onclick="sendDeskEsc()" />
-                            <input id="DeskClip" type="button" class="btn btn-primary btn-sm me-1" value="Clipboard"
-                                onkeypress="return false" onkeydown="return false" onclick="showDeskClip()" />
-                            <input id="DeskType" class="btn btn-primary btn-sm me-1"
-                                cmenu="deskPreConfigShortcutContextMenu" type="button" value="Type"
-                                onkeypress="return false" onkeydown="return false" onclick="showDeskType()" />
-                            <div id="DeskControlSpan" title="Toggle mouse and keyboard input" class="form-check"><input
-                                    id="DeskControl" type="checkbox" class="form-check-input" onkeypress="return false"
-                                    onkeydown="return false" onclick="toggleKvmControl()"><label
-                                    class="form-check-label" for="DeskControl">Input</label></div>&nbsp;
+
+                    <div id="deskarea4"
+                        class="remote-desktop-footer d-flex flex-wrap align-items-center p-2 gap-2 bg-light border-top">
+                        <!-- Left Side Controls -->
+                        <div class="d-flex align-items-center flex-wrap gap-2">
+                            <!-- Keyboard Shortcuts -->
+                            <select id="deskkeys" class="form-select form-select-sm shadow-sm" style="max-width: 140px;"
+                                cmenu="deskKeyShortcutContextMenu"></select>
+
+                            <!-- Action Buttons -->
+                            <button id="DeskWD" class="btn btn-sm btn-outline-primary shadow-sm px-3"
+                                onclick="deskSendKeys()" onkeypress="return false" onkeydown="return false">
+                                <i class="fas fa-paper-plane me-1"></i> Send
+                            </button>
+
+                            <button id="DeskESC" style="display:none" class="btn btn-sm btn-outline-secondary shadow-sm"
+                                onclick="sendDeskEsc()" onkeypress="return false" onkeydown="return false">
+                                ESC
+                            </button>
+
+                            <button id="DeskClip" class="btn btn-sm btn-outline-primary shadow-sm px-3"
+                                onclick="showDeskClip()" onkeypress="return false" onkeydown="return false">
+                                <i class="fas fa-clipboard me-1"></i> Clipboard
+                            </button>
+
+                            <button id="DeskType" class="btn btn-sm btn-outline-primary shadow-sm px-3"
+                                onclick="showDeskType()" onkeypress="return false" onkeydown="return false"
+                                cmenu="deskPreConfigShortcutContextMenu">
+                                <i class="fas fa-keyboard me-1"></i> Type
+                            </button>
+
+                            <!-- Input Toggle -->
+                            <div id="DeskControlSpan" class="form-check form-switch ms-2 d-flex align-items-center">
+                                <input id="DeskControl" type="checkbox" class="form-check-input shadow-sm"
+                                    onkeypress="return false" onkeydown="return false" onclick="toggleKvmControl()">
+                                <label class="form-check-label ms-2" for="DeskControl">Input</label>
+                            </div>
                         </div>
-                        <div class="d-flex ms-auto align-items-center">
-                            <span id=DeskMonitorSelectionSpan></span>
-                            <span id="DeskLatency" style="width:70px" class="text-center"
+
+                        <!-- Right Side Controls -->
+                        <div class="d-flex align-items-center flex-wrap gap-2 ms-auto">
+                            <!-- Monitor Selection -->
+                            <div id="DeskMonitorSelectionSpan"></div>
+
+                            <!-- Status Indicators -->
+                            <span id="DeskLatency" class="badge bg-white text-dark border shadow-sm" style="width:70px"
                                 title="Desktop Session Latency"></span>
-                            <span id="DeskTimer" style="width:70px" class="text-center" title="Session time"></span>
-                            <input id=DeskToolsButton type=button class="btn btn-primary btn-sm mx-1" value=Tools
-                                title="Toggle tools view" onkeypress="return false" onkeydown="return false"
-                                onclick="toggleDeskTools()" />
-                            <span id=DeskGuestShareButton title="Share the device with a guest" role="button">
-                                <i class="fa-solid fa-fw fa-share-nodes" id=DeskInputUnLockedButtonImage
-                                    onclick=showShareDevice()></i>
-                            </span>
-                            <span id=DeskInputUnLockedButton title="Remote input is unlocked" role="button">
-                                <i class="fa-solid fa-fw fa-keyboard" onclick=deskInputLockFunction(1)></i>
-                            </span>
-                            <span id=DeskInputLockedButton title="Remote input is locked" role="button">
-                                <i class="fa-solid fa-fw fa-keyboard" style=color:red
-                                    onclick=deskInputLockFunction(0)></i>
-                            </span>
-                            <span id=DeskRefreshButton title="Refresh the desktop" role="button">
-                                <i class="fa-solid fa-fw fa-rotate" onclick=deskRefreshFunction()></i>
-                            </span>
-                            <span id=DeskClipboardOutButton title="Upload local clipboard to remote device"
-                                role="button">
-                                <i class="fa-solid fa-fw fa-up-long" data-fa-transform="shrink-9 down-4"
-                                    data-fa-mask="fa-solid fa-clipboard" onclick=deskClipboardOutFunction()></i>
-                            </span>
-                            <span id=DeskClipboardInButton title="Download remote clipboard to local clipboard"
-                                style="display:none" role="button">
-                                <i class="fa-solid fa-fw fa-down-long" data-fa-transform="shrink-9 down-4"
-                                    data-fa-mask="fa-solid fa-clipboard" onclick=deskClipboardInFunction()></i>
-                            </span>
-                            <span id=DeskRecordButton cmenu=deskPlayerContextMenu
-                                title="Record remote desktop session to file" style="display:none" role="button">
-                                <i class="fa-solid fa-fw fa-video" onclick=deskRecordSession()
-                                    id=DeskRecordButtonImage></i>
-                            </span>
-                            <span id=DeskSaveImageButton title="Save a screenshot of the remote desktop" role="button">
-                                <i class="fa-solid fa-fw fa-camera" onclick=deskSaveImage()></i>
-                            </span>
-                            <span id=DeskBackgroundButton title="Toggle remote desktop background" role="button">
-                                <i class="fa-solid fa-fw fa-image" onclick=deviceToggleBackground(event)
-                                    id=DeskBackgroundButtonImage></i>
-                            </span>
-                            <span id=DeskOpenWebButton title="Open a web address on the remote computer" role="button">
-                                <i class="fa-solid fa-fw fa-globe" onclick=deviceUrlFunction()></i>
-                            </span>
-                            <span id=DeskLockButton title="Lock the remote computer" role="button">
-                                <i class="fa-solid fa-fw fa-lock" onclick=deviceLockFunction()></i>
-                            </span>
-                            <span id=DeskNotifyButton title="Display a notification on the remote computer"
-                                role="button">
-                                <i class="fa-solid fa-fw fa-bell" onclick=deviceToastFunction()></i>
-                            </span>
-                            <span id=DeskChatButton class="deskarea" title="Open chat window to this computer"
-                                role="button">
-                                <i class="fa-solid fa-fw fa-message" onclick=deviceChat(event)></i>
-                            </span>
-                            <span id=DeskRunButton cmenu="deskPreConfigScriptContextMenu" class="deskarea"
-                                title="Run a script on this computer" role="button">
-                                <i class="fa-solid fa-fw fa-play" onclick=runDeviceCmd()></i>
-                            </span>
+                            <span id="DeskTimer" class="badge bg-white text-dark border shadow-sm" style="width:70px"
+                                title="Session time"></span>
+
+                            <!-- Tools Button -->
+                            <button id="DeskToolsButton" class="btn btn-sm btn-outline-secondary shadow-sm"
+                                onclick="toggleDeskTools()" onkeypress="return false" onkeydown="return false">
+                                <i class="fas fa-tools me-1"></i> Tools
+                            </button>
+
+                            <!-- Icon Buttons -->
+                            <div class="d-flex gap-1">
+                                <button id="DeskGuestShareButton" class="btn btn-sm btn-icon rounded-circle"
+                                    title="Share the device with a guest" onclick="showShareDevice()">
+                                    <i class="fas fa-share-nodes"></i>
+                                </button>
+
+                                <button id="DeskInputUnLockedButton" class="btn btn-sm btn-icon rounded-circle"
+                                    title="Remote input is unlocked" onclick="deskInputLockFunction(1)">
+                                    <i class="fas fa-keyboard text-success"></i>
+                                </button>
+
+                                <button id="DeskInputLockedButton" class="btn btn-sm btn-icon rounded-circle"
+                                    title="Remote input is locked" onclick="deskInputLockFunction(0)">
+                                    <i class="fas fa-keyboard text-danger"></i>
+                                </button>
+
+                                <button id="DeskRefreshButton" class="btn btn-sm btn-icon rounded-circle"
+                                    title="Refresh the desktop" onclick="deskRefreshFunction()">
+                                    <i class="fas fa-rotate"></i>
+                                </button>
+
+                                <button id="DeskClipboardOutButton" class="btn btn-sm btn-icon rounded-circle"
+                                    title="Upload local clipboard to remote device"
+                                    onclick="deskClipboardOutFunction()">
+                                    <i class="fas fa-upload"></i>
+                                </button>
+
+                                <button id="DeskClipboardInButton" style="display:none"
+                                    class="btn btn-sm btn-icon rounded-circle"
+                                    title="Download remote clipboard to local clipboard"
+                                    onclick="deskClipboardInFunction()">
+                                    <i class="fas fa-download"></i>
+                                </button>
+
+                                <button id="DeskRecordButton" style="display:none"
+                                    class="btn btn-sm btn-icon rounded-circle"
+                                    title="Record remote desktop session to file" onclick="deskRecordSession()"
+                                    cmenu="deskPlayerContextMenu">
+                                    <i class="fas fa-video"></i>
+                                </button>
+
+                                <button id="DeskSaveImageButton" class="btn btn-sm btn-icon rounded-circle"
+                                    title="Save a screenshot of the remote desktop" onclick="deskSaveImage()">
+                                    <i class="fas fa-camera"></i>
+                                </button>
+
+                                <button id="DeskBackgroundButton" class="btn btn-sm btn-icon rounded-circle"
+                                    title="Toggle remote desktop background" onclick="deviceToggleBackground(event)">
+                                    <i class="fas fa-image"></i>
+                                </button>
+
+                                <button id="DeskOpenWebButton" class="btn btn-sm btn-icon rounded-circle"
+                                    title="Open a web address on the remote computer" onclick="deviceUrlFunction()">
+                                    <i class="fas fa-globe"></i>
+                                </button>
+
+                                <button id="DeskLockButton" class="btn btn-sm btn-icon rounded-circle"
+                                    title="Lock the remote computer" onclick="deviceLockFunction()">
+                                    <i class="fas fa-lock"></i>
+                                </button>
+
+                                <button id="DeskNotifyButton" class="btn btn-sm btn-icon rounded-circle"
+                                    title="Display a notification on the remote computer"
+                                    onclick="deviceToastFunction()">
+                                    <i class="fas fa-bell"></i>
+                                </button>
+
+                                <button id="DeskChatButton" class="btn btn-sm btn-icon rounded-circle"
+                                    title="Open chat window to this computer" onclick="deviceChat(event)">
+                                    <i class="fas fa-comment-dots"></i>
+                                </button>
+
+                                <button id="DeskRunButton" class="btn btn-sm btn-icon rounded-circle"
+                                    title="Run a script on this computer" onclick="runDeviceCmd()"
+                                    cmenu="deskPreConfigScriptContextMenu">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
+
+                    <style>
+                        .btn-icon {
+                            width: 32px;
+                            height: 32px;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: white;
+                            border: 1px solid #dee2e6;
+                            color: #495057;
+                            transition: all 0.2s;
+                        }
+
+                        .btn-icon:hover {
+                            background-color: #f1f1f1;
+                            color: #0d6efd;
+                            transform: translateY(-1px);
+                        }
+
+                        .btn-icon i {
+                            font-size: 0.9rem;
+                        }
+
+                        .badge {
+                            padding: 0.35em 0.65em;
+                            font-size: 0.8rem;
+                            font-weight: 500;
+                        }
+
+                        .form-check-input {
+                            cursor: pointer;
+                        }
+
+                        .form-switch .form-check-input {
+                            width: 2.5em;
+                        }
+                    </style>
                 </div>
             </div>
 
@@ -1825,7 +1968,7 @@
                     </div>
                 </div>
                 <div id=termTable style="position:relative">
-                    <div class="card shadow-sm terminal-container">
+                    <div class="card shadow-sm ">
                         <!-- Terminal Toolbar -->
                         <div class="card-header bg-light d-flex flex-wrap align-items-center py-2">
                             <div class="d-flex align-items-center flex-wrap gap-2">
@@ -1945,7 +2088,8 @@
                         <!-- Terminal Display Area -->
                         <div class="card-body p-0 terminal-display">
                             <div id="termarea3x">
-                                <div id="termarea3xdiv" class="terminal-content" style="width:100%;height:100%;text-align:left;padding:3px"></div>
+                                <div id="termarea3xdiv" class="terminal-content"
+                                    style="width:100%;height:100%;text-align:left;padding:3px"></div>
                                 <pre id="Term" class=""></pre>
                             </div>
                         </div>
@@ -3787,8 +3931,8 @@
                     //QS('termarea3x')['max-width'] = 'calc(1px)';
                 }
             } else {
-                QS('deskarea3x')['height'] = 'calc(95vh - ' + (74 + xh + xh2) + 'px)';
-                QS('deskarea3x')['max-height'] = 'calc(95vh - ' + (74 + xh + xh2) + 'px)';
+                QS('deskarea3x')['height'] = 'calc(90vh - ' + (74 + xh + xh2) + 'px)';
+                QS('deskarea3x')['max-height'] = 'calc(90vh - ' + (74 + xh + xh2) + 'px)';
                 QS('p14iframe')['height'] = 'calc(100vh - ' + (23 + xh + xh2) + 'px)';
                 QS('p14iframe')['max-height'] = 'calc(100vh - ' + (23 + xh + xh2) + 'px)';
                 if (xtermActive) {
@@ -6411,64 +6555,32 @@
                             if ((current != '') && (r != '')) { r += '</tr></table>'; }
                             r += '<table style=width:100%;padding-top:4px cellpadding=0 cellspacing=0><tr><td colspan=3 class=DevSt>';
 
+
                             // Collapsing header & start collapsing area
-
                             deviceHeaderId2++;
-                            const isCollapsed = CollapsedGroups[mesh._id];
-                            const groupTypeMessages = {
-                                1: {
-                                    message: "No Intel® AMT devices in this device group",
-                                    action: `addDeviceToMesh('${mesh._id}')`
-                                },
-                                2: {
-                                    message: "No devices in this device group",
-                                    action: `addAgentToMesh('${mesh._id}')`
-                                },
-                                3: {
-                                    message: "No local devices in this device group",
-                                    action: `addLocalDeviceToMesh('${mesh._id}')`
-                                },
-                                4: {
-                                    message: "No devices in this device group",
-                                    action: null
-                                }
-                            };
+                            var collapsed = CollapsedGroups[mesh._id];
+                            r += '<i role="button" cmenu=expandAllContextMenu onclick=toggleCollapseGroup("' + deviceHeaderId2 + '","' + mesh._id + '") class="fa-fw fa-solid ' + ((collapsed === true) ? 'fa-chevron-right' : 'fa-chevron-down') + '" id="DevxColImg' + deviceHeaderId2 + '"></i>'; // Collapse action
 
-                            const canAddDevice = ((meshrights & 4) != 0) &&
-                                ((userinfo.siteadmin == 0xFFFFFFFF) || ((userinfo.siteadmin & 4096) == 0));
-                            const groupInfo = groupTypeMessages[mesh.mtype] || groupTypeMessages[2];
-
-                            // devices cards
-
-                            r += `
-                            <div class="mb-3 card ">
-                            <div class="p-3 d-flex align-items-center bg-light rounded-top cursor-pointer"
-                                onclick="toggleCollapseGroup('${deviceHeaderId2}','${mesh._id}')">
-                                <div class="toggle-icon me-3">
-                                <i class="fas fa-fw fa-chevron-${isCollapsed ? 'right' : 'down'} transition-all"></i>
-                                </div>
-                                <h5 class="group-name flex-grow-1 mb-0 ">${EscapeHtml(mesh.name)}</h5>
-                                <div class="group-actions">${getMeshActions(mesh, meshrights)}</div>
-                            </div>
-
-                            <div id="DevxCol${deviceHeaderId2}" class="device-group-content p-3 bg-white rounded-bottom" 
-                                style="display: ${isCollapsed ? 'none' : 'block'}">
-                                <p class="text-muted mb-2">
-                                ${groupInfo.message}.
-                                ${canAddDevice && groupInfo.action ?
-                                    `<a href="#" class="btn btn-sm btn-outline-primary ms-1" onclick="return ${groupInfo.action}">
-                                        <i class="fa-solid fa-circle-plus me-1"></i>Add one
-                                    </a>
-                                    ` : ''}
-                                </p>
-                                <div class="goto-mesh">
-                                <button class="btn btn-sm btn-outline-primary" onclick="gotoMesh('${mesh._id}')">
-                                    <i class="fas fa-external-link-alt me-1"></i> View Group Details
-                                </button>
-                                </div>
-                            </div>
-                            </div>
-                            `;
+                            r += '<span id=MxMESH style=cursor:pointer onclick=gotoMesh("' + mesh._id + '")>' + EscapeHtml(mesh.name) + '</span><span>';
+                            r += getMeshActions(mesh, meshrights);
+                            r += '</span></td></tr><tr>';
+                            if (mesh.mtype == 1) {
+                                r += '<td><div style=padding:10px><i>' + "No Intel&reg; AMT devices in this device group";
+                                if (((meshrights & 4) != 0) && ((userinfo.siteadmin == 0xFFFFFFFF) || ((userinfo.siteadmin & 4096) == 0))) { r += ', <a href=# style=cursor:pointer onclick=\'return addDeviceToMesh("' + mesh._id + '")\'>' + "add one" + '</a>'; }
+                            } else if (mesh.mtype == 2) {
+                                r += '<td><div id=DevxCol' + deviceHeaderId2 + ((collapsed === true) ? ' style=display:none' : '') + '>'; // Open collapse div
+                                r += '<div style=padding:10px><i>' + "No devices in this device group";
+                                if (((meshrights & 4) != 0) && ((userinfo.siteadmin == 0xFFFFFFFF) || ((userinfo.siteadmin & 4096) == 0))) { r += ', <a href=# style=cursor:pointer onclick=\'return addAgentToMesh("' + mesh._id + '")\'>' + "add one" + '</a>'; }
+                            } else if (mesh.mtype == 3) {
+                                r += '<td><div id=DevxCol' + deviceHeaderId2 + ((collapsed === true) ? ' style=display:none' : '') + '>'; // Open collapse div
+                                r += '<div style=padding:10px><i>' + "No local devices in this device group";
+                                if (((meshrights & 4) != 0) && ((userinfo.siteadmin == 0xFFFFFFFF) || ((userinfo.siteadmin & 4096) == 0))) { r += ', <a href=# style=cursor:pointer onclick=\'return addLocalDeviceToMesh("' + mesh._id + '")\'>' + "add one" + '</a>'; }
+                            } else if (mesh.mtype == 4) {
+                                r += '<td><div id=DevxCol' + deviceHeaderId2 + ((collapsed === true) ? ' style=display:none' : '') + '>'; // Open collapse div
+                                r += '<div style=padding:10px><i>' + "No devices in this device group";
+                            }
+                            r += '.</i></div></td>';
+                            r += '</div>';
 
 
                             // End collapsing area
@@ -6736,7 +6848,7 @@
 
             if (view == 1) {
                 div.innerHTML = `
-                                <div id="devs" class="card device-card mb-40" cmenu="devsContentMenu">
+                                <div id="devs" class="card device-card mb-60" cmenu="devsContentMenu">
                                 <div class="card-body p-3 d-flex align-items-center">
                                     <div class="me-3">
                                     <input class="${node.meshid} DeviceCheckbox form-check-input" 
@@ -9927,19 +10039,19 @@
                 x = '<div class="p10html3right">';
                 if (((meshrights & 1) != 0) && (node.mtype != 4)) { // MESHRIGHT_EDITMESH
                     // TODO: Show change group only if there is another mesh of the same type.
-                    x += '&nbsp;<a href=# onclick=p10showChangeGroupDialog(["' + node._id + '"]) title="' + "Move this device to a different device group" + '">' + "Change Group" + '</a>';
+                    x += '&nbsp;<a href=# class="btn btn-primary btn-sm" onclick=p10showChangeGroupDialog(["' + node._id + '"]) title="' + "Move this device to a different device group" + '">' + "Change Group" + '</a>';
                 }
                 if ((meshrights & 0x8000) != 0) { // MESHRIGHT_UNINSTALL
-                    x += '&nbsp;<a href=# onclick=p10showDeleteNodeDialog("' + node._id + '") title="' + "Remove this device" + '">' + "Delete Device" + '</a>';
+                    x += '&nbsp;<a href=# class="btn btn-danger btn-sm" onclick=p10showDeleteNodeDialog("' + node._id + '") title="' + "Remove this device" + '">' + "Delete Device" + '</a>';
                 }
                 x += '</div><div class="p10html3left">';
-                if ((node.agent) && (node.mtype != 3) && ((meshrights & 1048576) != 0)) x += '<a href=# onclick=p10showNodeNetInfoDialog("' + node._id + '") title="' + "Show device network interface information" + '">' + "Interfaces" + '</a>&nbsp;';
+                if ((node.agent) && (node.mtype != 3) && ((meshrights & 1048576) != 0)) x += '<a href=# class="btn btn-primary btn-sm" onclick=p10showNodeNetInfoDialog("' + node._id + '") title="' + "Show device network interface information" + '">' + "Interfaces" + '</a>&nbsp;';
                 if ((features & 0x00008000) && (xxmap != null)) x += '<a href=# onclick=p10showNodeLocationDialog("' + node._id + '") title="' + "Show device locations information" + '">' + "Location" + '</a>&nbsp;';
                 if ((node.agent == null) || ((node.agent.id != 14) && (node.agent.id != 34))) {
                     if ((userinfo.siteadmin == 0xFFFFFFFF) || ((userinfo.siteadmin & 128) == 0)) { // Check if we should view tools
-                        if ((terminalAccess) && ((meshrights & 8) != 0) && (node.agent != null) && (node.agent.id != 14)) x += '<a href=# onclick=p10showMeshCmdDialog(1,"' + node._id + '") title="' + "Traffic router used to connect to a device thru this server" + '.">' + "MeshCmd" + '</a>&nbsp;';
+                        if ((terminalAccess) && ((meshrights & 8) != 0) && (node.agent != null) && (node.agent.id != 14)) x += '<a href=# class="btn btn-primary btn-sm" onclick=p10showMeshCmdDialog(1,"' + node._id + '") title="' + "Traffic router used to connect to a device thru this server" + '.">' + "MeshCmd" + '</a>&nbsp;';
                     }
-                    if ((args.xterm === 0) && (node.agent) && ((node.agent.caps & 2) != 0) && ((meshrights & 8) != 0) && ((meshrights == 0xFFFFFFFF) || ((meshrights & 512) == 0))) { x += '<a href=# onclick=p10openxterm(event,"' + node._id + '") title="' + "Open XTerm terminal" + '">' + "XTerm" + '</a>&nbsp;'; }
+                    if ((args.xterm === 0) && (node.agent) && ((node.agent.caps & 2) != 0) && ((meshrights & 8) != 0) && ((meshrights == 0xFFFFFFFF) || ((meshrights & 512) == 0))) { x += '<a href=# class="btn btn-primary btn-sm" onclick=p10openxterm(event,"' + node._id + '") title="' + "Open XTerm terminal" + '">' + "XTerm" + '</a>&nbsp;'; }
 
                     // RDP link, show this link only of the remote machine is Windows.
                     if ((((connectivity & 1) != 0) || (node.mtype == 3)) && (node.agent) && ((meshrights & 8) != 0)) {
@@ -9982,21 +10094,21 @@
 
                     // noVNC link
                     if ((((connectivity & 1) != 0) || (node.mtype == 3)) && (node.agent) && ((meshrights & 8) != 0) && ((features & 0x20000000) == 0)) {
-                        x += '<a href=# cmenu=rfbPortContextMenu id=rfbLink onclick=p10rfb("' + node._id + '") title="' + "Launch web-based VNC session to this device" + '.">' + "Web-VNC" + '</a>&nbsp;';
+                        x += '<a href=# class="btn btn-primary btn-sm" cmenu=rfbPortContextMenu id=rfbLink onclick=p10rfb("' + node._id + '") title="' + "Launch web-based VNC session to this device" + '.">' + "Web-VNC" + '</a>&nbsp;';
                     }
 
                     // MSTSC.js link
                     if ((((connectivity & 1) != 0) || (node.mtype == 3)) && (node.agent) && ((meshrights & 8) != 0) && ((features & 0x40000000) == 0)) {
-                        x += '<a href=# cmenu=altPortContextMenu id=mstscLink onclick=p10mstsc("' + node._id + '") title="' + "Launch web-based RDP session to this device" + '.">' + "Web-RDP" + '</a>&nbsp;';
+                        x += '<a href=# class="btn btn-primary btn-sm" cmenu=altPortContextMenu id=mstscLink onclick=p10mstsc("' + node._id + '") title="' + "Launch web-based RDP session to this device" + '.">' + "Web-RDP" + '</a>&nbsp;';
                     }
 
                     // SSH link
                     if ((features2 & 0x200) && (((connectivity & 1) != 0) || (node.mtype == 3)) && (node.agent) && ((meshrights & 8) != 0)) {
-                        x += '<a href=# cmenu=sshPortContextMenu id=sshLink onclick=p10ssh("' + node._id + '") title="' + "Launch web-based SSH session to this device" + '.">' + "Web-SSH" + '</a>&nbsp;';
+                        x += '<a href=# class="btn btn-primary btn-sm" cmenu=sshPortContextMenu id=sshLink onclick=p10ssh("' + node._id + '") title="' + "Launch web-based SSH session to this device" + '.">' + "Web-SSH" + '</a>&nbsp;';
                     }
 
                     // MQTT options
-                    if ((meshrights == 0xFFFFFFFF) && (features & 0x00400000)) { x += '<a href=# onclick=p10showMqttLoginDialog("' + node._id + '") title="' + "Get MQTT login credentials for this device." + '">' + "MQTT Login" + '</a>&nbsp;'; }
+                    if ((meshrights == 0xFFFFFFFF) && (features & 0x00400000)) { x += '<a href=# class="btn btn-primary btn-sm" onclick=p10showMqttLoginDialog("' + node._id + '") title="' + "Get MQTT login credentials for this device." + '">' + "MQTT Login" + '</a>&nbsp;'; }
                 }
                 x += '</div><br>'
 
@@ -10144,7 +10256,7 @@
                     }
                 }
 
-                x += '<table class="table table-hover" border=0 cellpadding=2 cellspacing=0 width=100%><tbody><tr style=background-color:#AAAAAA;font-weight:bold><th scope=col style=text-align:left;width:430px>' + "User Authorizations" + '</th><th scope=col style=text-align:left></th></tr>';
+                x += ' <div class="table-responsive p-2 mt-2 card shadow-sm rounded-3 border"><table class="table" border=0 cellpadding=2 cellspacing=0><tbody><tr style=background-color:#AAAAAA;font-weight:bold><th scope=col style=text-align:left;>' + "User Authorizations" + '</th><th scope=col style=text-align:left></th></tr>';
                 var count = 1;
                 if (currentNode.links != null) {
                     // Sort the list of users to display
@@ -10159,10 +10271,10 @@
                         if ((usergroups != null) && (usergroups[userid] != null)) { username = EscapeHtml(usergroups[userid].name); ugroup = true; }
                         if ((meshrights & 2) != 0) {
                             if (ugroup) {
-                                trash = '<a href=# onclick=\'return p30removeUserFromNode(event,"' + encodeURIComponentEx(userid) + '")\' title="' + "Remove user group rights to this device group" + '" style=cursor:pointer><i class="fa-solid fa-trash text-danger hoverButton"></i></a>';
+                                trash = '<a href=# onclick=\'return p30removeUserFromNode(event,"' + encodeURIComponentEx(userid) + '")\' title="' + "Remove user group rights to this device group" + '" class="btn btn-sm btn-light rounded-circle shadow-sm p-2" style="cursor:pointer;"><i class="fa-solid fa-trash text-danger"></i></a>';
                                 rights = '<span style=cursor:pointer onclick=p20showAddMeshUserDialog(6,"' + encodeURIComponentEx(userid) + '")>' + rights + ' <img class=hoverButton style=cursor:pointer src=images/link5.png></span>';
                             } else {
-                                trash = '<a href=# onclick=\'return p30removeUserFromNode(event,"' + encodeURIComponentEx(userid) + '")\' title="' + "Remove user rights to this device group" + '" style=cursor:pointer><i class="fa-solid fa-trash text-danger hoverButton"></i></a>';
+                                trash = '<a href=# onclick=\'return p30removeUserFromNode(event,"' + encodeURIComponentEx(userid) + '")\' title="' + "Remove user group rights to this device group" + '" class="btn btn-sm btn-light shadow-sm p-2" style="cursor:pointer;"><i class="fa-solid fa-trash text-danger"></i></a>';
                                 rights = '<span style=cursor:pointer onclick=p20showAddMeshUserDialog(5,"' + encodeURIComponentEx(userid) + '")>' + rights + ' <img class=hoverButton style=cursor:pointer src=images/link5.png></span>';
                             }
                         }
@@ -10177,8 +10289,8 @@
                         x += '<tr ' + (((++count % 2) == 0) ? 'style=background-color:#DDD' : '') + '><td style=width:30%><div title="' + (ugroup ? "User Group" : "User") + '" class=m' + (ugroup ? 4 : 2) + '></div><div>&nbsp;' + username + '<div></div></div></td><td style=width:70%><div style=float:right>' + trash + '</div><div>' + rights + '</div></td></tr>';
                     }
                 }
-                if (count == 1) { x += '<tr><td><div style=padding:6px>&nbsp;<i>' + "No users with special device permissions" + '</i><div></div></div></td><td></td></tr>'; }
-                x += '</tbody></table>';
+                if (count == 1) { x += '<tr><td><div class="p-2 text-muted ">&nbsp;' + "No users with special device permissions" + '<div></div></div></td><td></td></tr>'; }
+                x += '</tbody></table> </div>';
 
                 // Show device shares
                 if ((deviceShares != null) && (deviceSharesNode == currentNode._id) && (deviceShares.length > 0)) {
@@ -10898,7 +11010,7 @@
             // Add the language and timezone of the browser to the server so the server can localize the time correctly.
             var tz = '';
             try { tz = '&tz=' + encodeURIComponentEx(Intl.DateTimeFormat().resolvedOptions().timeZone); } catch (ex) { }
-            QH('p10html2', '<table class="table table-striped align-middle text-center" cellpadding=2 cellspacing=0><thead><tr><th scope=col style=width:150px>' + "Day" + '</th><th scope=col>' + "7 Day Power State" + '<div class="float-end pe-1"><i role="button" onclick=downloadFile("devicepowerevents.ashx?id=' + currentNode._id + '&tf=' + new Date().getTimezoneOffset() + '&l=' + encodeURIComponentEx(getLang()) + tz + (urlargs.key ? ('&key=' + urlargs.key) : '') + '",null,true) title="' + "Download power events" + '" class="fa-solid fa-download"></i></div></th></tr></thead><tbody>' + x + '</tbody></table>');
+            QH('p10html2', '<div class="card shadow-sm p-2"><table class="table  table-striped align-middle text-center mb-0" cellpadding=2 cellspacing=0><thead><tr><th scope=col style=width:150px>' + "Day" + '</th><th scope=col >' + "7 Day Power State" + '<div class="float-end"><i role="button" onclick=downloadFile("devicepowerevents.ashx?id=' + currentNode._id + '&tf=' + new Date().getTimezoneOffset() + '&l=' + encodeURIComponentEx(getLang()) + tz + (urlargs.key ? ('&key=' + urlargs.key) : '') + '",null,true) title="' + "Download power events" + '" class="fa-solid fa-download"></i></div></th></tr></thead><tbody>' + x + '</tbody></table></div>');
         }
 
         // Return a color for the given power state
