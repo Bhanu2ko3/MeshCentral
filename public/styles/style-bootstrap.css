@@ -3108,7 +3108,8 @@ nav .lbbuttonsel {
     overflow-x: auto;
     height: 100%;
     max-height: 100%;
-    width: 930px;
+    max-width: 100%;
+    
 }
 
 .menu_stack.fullscreen #p15agentConsoleText {
@@ -4930,7 +4931,7 @@ nav .lbbuttonsel2:hover i {
 .deviceBatterySmall {
     position: absolute;
     right: 35px;
-    top: 45px;
+    top: 55px;
     width: 14px;
     height: 24px;
     border: none;
@@ -5320,3 +5321,127 @@ nav .lbbuttonsel2:hover i {
 .form-switch .form-check-input {
     width: 2.5em;
 }
+
+
+
+/* Modern Device Card Styles */
+.device-card {
+  width: 100%;
+  height: 100px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.device-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.device-table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+}
+
+.checkbox-cell {
+  width: 44px;
+  padding: 0 8px;
+}
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  height: 24px;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  border-color: #bbb;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #0D6EFD;
+  border-color: #0D6EFD;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.device-content {
+  padding: 8px 0;
+}
+
+.device-info-table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  cursor: pointer;
+}
+
+.device-icon {
+    
+  padding: 0 8px;
+}
+
+.device-icon-container {
+    margin-top: 10px;
+
+}
+
+.device-details {
+  padding: 0 8px;
+}
+
+.device-name {
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.device-status {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
